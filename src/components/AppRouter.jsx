@@ -1,18 +1,14 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Routes, Redirect } from 'react-router-dom'
 import Catalog from './Catalog';
 import MainPage from './MainPage';
 
 const AppRouter = () => {
     return (
-        <Switch>
-            <Route path='/catalog'>
-                <Catalog />
-            </Route>
-            <Route path='/'>
-                <MainPage />
-            </Route>
-        </Switch>
+        <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/catalog' element={<Catalog />} />
+        </Routes>
     )
 }
 
