@@ -38,3 +38,28 @@ header {
         max-height: 200px;
     }
 }
+
+.product {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.product-item {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    &> img {
+        max-width: 100%;
+    }
+}
+
+.item-bottom {
+    display: flex;  
+    justify-content: space-between;
+}

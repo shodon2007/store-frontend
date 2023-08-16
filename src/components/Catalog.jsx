@@ -4,13 +4,20 @@ import CatalogItem from './CatalogItem';
 
 const Catalog = () => {
     const [catalogs, setCatalogs] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         async function fetchData() {
             const data = await getCatalogs();
             setCatalogs(data);
+            setLoading(false);
         }
         fetchData();
     }, []);
+
+    if (loading) {
+        return <div>Загрузка...</div>
+    }
+
     return (
         <div className='catalog'>
             {catalogs.map(catalog => {

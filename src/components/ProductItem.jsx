@@ -1,8 +1,16 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
-const ProductItem = () => {
+const ProductItem = ({ product }) => {
+    const { type } = useParams();
     return (
-        <div>ProductItem</div>
+        <div className='product-item'>
+            <img src={`http://localhost:3666/img/${type}.png`} alt="" />
+            <div className='item-bottom'>
+                <div>{product.name}</div>
+                <div>{product.price}</div>
+            </div>
+        </div>
     )
 }
 
