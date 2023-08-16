@@ -1,14 +1,19 @@
 import React from 'react'
-import AppRouter from './components/AppRouter'
-import Header from './components/Header'
+import Layout from './components/Layout'
+import { Route, Routes } from 'react-router-dom'
+import Catalog from './components/Catalog'
+import ProductList from './components/ProductList'
+import ProductItem from './components/ProductItem'
 
 const App = () => {
   return (
-    <div className='app'>
-      <Header />
-      <hr />
-      <AppRouter />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Catalog />} />
+        <Route path='type/:type' element={<ProductList />} />
+        <Route path='type/:type/:id' element={<ProductItem />} />
+      </Route>
+    </Routes>
   )
 }
 

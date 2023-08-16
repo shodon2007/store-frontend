@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <header>
-            <h2>Shodon Store</h2>
+            <Link to={'/'}>Shodon Store</Link>
             <nav>
-                <button>КОРЗИНА</button>
-                <button>МЕНЮ</button>
+                <button>корзина</button>
+                <button>войти</button>
             </nav>
         </header>
     )
