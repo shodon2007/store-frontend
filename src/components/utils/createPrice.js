@@ -8,5 +8,5 @@ export default function createPrice(price) {
         return letter;
     })
     price = price.reverse().join('')
-    return price + '$';
+    return price + ' ₽';
 }

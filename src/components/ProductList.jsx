@@ -9,23 +9,30 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [copyProducts, setCopyProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [brands, setBrands] = useState([]);
+    const [brand, setBrand] = useState('all');
     useEffect(() => {
         fetchData();
     }, []);
+    useEffect(() => {
+        changeBrand()
+    }, [brand]);
 
     async function fetchData() {
         const data = await getProduct(type);
         setProducts(data);
         setCopyProducts(data);
+        setBrands([...data].map(product => product.brand));
+        setBrands(prew => Array.from(new Set(prew)))
         setLoading(false);
     }
 
-    function changeBrand(value) {
-        if (value === 'all') {
+    function changeBrand() {
+        if (brand === 'all') {
             setCopyProducts([...products]);
             return;
         }
-        setCopyProducts([...products].filter(product => product.brand === value))
+        setCopyProducts([...products].filter(product => product.brand === brand));
     }
 
     if (loading) {
@@ -33,7 +40,7 @@ const ProductList = () => {
     }
     return (
         <div className='product'>
-            <SideBar changeBrand={changeBrand} />
+            <SideBar brands={brands} brand={brand} setBrand={setBrand} />
             <div className="product-list">
                 {copyProducts.map(product => {
                     return <Item key={product.name} product={product} />
