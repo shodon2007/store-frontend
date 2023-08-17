@@ -13,7 +13,7 @@ const SideBar = ({ changeBrand }) => {
             setBrands(data);
         }
         fetchData();
-    })
+    }, []);
 
 
 
