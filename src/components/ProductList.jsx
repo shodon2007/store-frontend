@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import SideBar from './SideBar'
 import { getProduct } from '../API/storeAPI';
 import { useParams } from 'react-router-dom';
-import ProductItem from './ProductItem';
+import Item from './UI/item/Item';
 
 const ProductList = () => {
     const { type } = useParams();
     const [products, setProducts] = useState([]);
+    const [copyProducts, setCopyProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchData();
@@ -15,7 +16,16 @@ const ProductList = () => {
     async function fetchData() {
         const data = await getProduct(type);
         setProducts(data);
+        setCopyProducts(data);
         setLoading(false);
+    }
+
+    function changeBrand(value) {
+        if (value === 'all') {
+            setCopyProducts([...products]);
+            return;
+        }
+        setCopyProducts([...products].filter(product => product.brand === value))
     }
 
     if (loading) {
@@ -23,10 +33,10 @@ const ProductList = () => {
     }
     return (
         <div className='product'>
-            <SideBar />
+            <SideBar changeBrand={changeBrand} />
             <div className="product-list">
-                {products.map(product => {
-                    return <ProductItem key={product.name} product={product} />
+                {copyProducts.map(product => {
+                    return <Item key={product.name} product={product} />
                 })}
             </div>
         </div>

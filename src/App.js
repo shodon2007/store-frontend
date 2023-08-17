@@ -3,7 +3,7 @@ import Layout from './components/Layout'
 import { Route, Routes } from 'react-router-dom'
 import Catalog from './components/Catalog'
 import ProductList from './components/ProductList'
-import ProductItem from './components/ProductItem'
+import Item from './components/UI/item/Item'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Catalog />} />
         <Route path='type/:type' element={<ProductList />} />
-        <Route path='type/:type/:id' element={<ProductItem />} />
+        <Route path='type/:type/:id' element={<Item />} />
       </Route>
     </Routes>
   )
