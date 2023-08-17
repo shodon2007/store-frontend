@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Catalog from './components/Catalog'
 import ProductList from './components/ProductList'
 import Item from './components/UI/item/Item'
+import Admin from './components/Admin';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Catalog />} />
         <Route path='type/:type' element={<ProductList />} />
+        <Route path='admin' element={<Admin />} />
         <Route path='type/:type/:id' element={<Item />} />
       </Route>
     </Routes>
