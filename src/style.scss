@@ -67,3 +67,28 @@ header {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px 5px;
+    text-align: center;
+}
+
+.side-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.side-input {
+    width: 100%;
+    padding: 10px 5px;
+}
+
+.price-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

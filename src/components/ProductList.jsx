@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from './SideBar'
-import { getProduct } from '../API/storeAPI';
+import { getProduct, getSettings } from '../API/storeAPI';
 import { useParams } from 'react-router-dom';
 import Item from './UI/item/Item';
 import getMinMax from './utils/arrayMinMax';
@@ -11,25 +11,21 @@ const ProductList = () => {
     const [copyProducts, setCopyProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [brands, setBrands] = useState([]);
-    const [brand, setBrand] = useState('all');
-    const [price, setPrice] = useState({
-        start: 0,
-        end: 1000000,
+    const [settings, setSettings] = useState({
+        price: {
+            start: 0,
+            end: 0
+        },
+        brand: 'all',
     });
 
     useEffect(() => {
         fetchData();
     }, []);
-    useEffect(() => {
-        changeBrand()
-    }, [brand]);
-    useEffect(() => {
-        priceChange();
-    }, [price]);
 
     async function fetchData() {
         const data = await getProduct(type);
-        setPrice(getMinMax(data));
+        setSettings((prew) => ({ ...prew, price: getMinMax(data) }));
         setProducts(data);
         setCopyProducts(data);
         setBrands([...data].map(product => product.brand));
@@ -37,16 +33,10 @@ const ProductList = () => {
         setLoading(false);
     }
 
-    function changeBrand() {
-        if (brand === 'all') {
-            setCopyProducts([...products]);
-            return;
-        }
-        setCopyProducts([...products].filter(product => product.brand === brand));
-    }
-
-    function priceChange() {
-        setCopyProducts(products.filter(product => product.price >= price.min && product.price <= price.max))
+    async function changeSettings() {
+        const data = await getSettings(type, settings);
+        setProducts(data);
+        setCopyProducts(data);
     }
 
     if (loading) {
@@ -54,7 +44,7 @@ const ProductList = () => {
     }
     return (
         <div className='product'>
-            <SideBar brands={brands} brand={brand} setBrand={setBrand} price={price} setPrice={setPrice} />
+            <SideBar brands={brands} settings={settings} setSettings={setSettings} changeSettings={changeSettings} />
             <div className="product-list">
                 {copyProducts.map(product => {
                     return <Item key={product.name} product={product} />

@@ -10,7 +10,12 @@ export async function getProduct(type) {
     return resp.data;
 }
 
-export async function getBrand(type) {
-    const resp = await axios.get(`http://localhost:3666/api/getBrand?type=${type}`)
+export async function getSettings(type, settings) {
+    const resp = await axios.get(`http://localhost:3666/api/getSettings`, {
+        params: {
+            type,
+            settings
+        }
+    })
     return resp.data;
 }
