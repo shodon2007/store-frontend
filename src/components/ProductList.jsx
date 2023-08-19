@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from './SideBar'
-import { getProduct, getSettings } from '../API/storeAPI';
-import { useParams } from 'react-router-dom';
+import { getProducts, getSettings } from '../API/storeAPI';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Item from './UI/item/Item';
 import getMinMax from './utils/arrayMinMax';
+import Breadcrumbs from './Breadcrumbs';
 
 const ProductList = () => {
     const { type } = useParams();
+    const location = useLocation();
     const [products, setProducts] = useState([]);
     const [copyProducts, setCopyProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ const ProductList = () => {
     }, []);
 
     async function fetchData() {
-        const data = await getProduct(type);
+        const data = await getProducts(type);
         setSettings((prew) => ({ ...prew, price: getMinMax(data) }));
         setProducts(data);
         setCopyProducts(data);
@@ -44,6 +46,7 @@ const ProductList = () => {
     }
     return (
         <div className='product'>
+            <Breadcrumbs category={{ url: location.pathname, name: copyProducts[0].type_name }} />
             <SideBar brands={brands} settings={settings} setSettings={setSettings} changeSettings={changeSettings} />
             <div className="product-list">
                 {copyProducts.map(product => {

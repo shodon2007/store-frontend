@@ -5,7 +5,12 @@ export async function getCatalogs() {
     return resp.data;
 }
 
-export async function getProduct(type) {
+export async function getProduct(id) {
+    const resp = await axios.get(`http://localhost:3666/api/product_info?id=${id}`);
+    return resp.data;
+}
+
+export async function getProducts(type) {
     const resp = await axios.get(`http://localhost:3666/api/product?type=${type}`);
     return resp.data;
 }
