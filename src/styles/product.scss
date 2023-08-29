@@ -1,0 +1,31 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product__item {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+
+    &>img {
+        max-width: 100%;
+    }
+}
+
+.attribute__item {
+    display: flex;
+}
+
+.product__attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

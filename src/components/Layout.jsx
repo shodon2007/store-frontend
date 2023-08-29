@@ -1,14 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import SmallModal from './UI/small-modal/SmallModal'
 import Header from './Header'
 
 const Layout = () => {
     return (
-        <div className='layout'>
+        <>
             <Header />
-            <hr />
+            <SmallModal />
             <Outlet />
-        </div>
+        </>
     )
 }
 
