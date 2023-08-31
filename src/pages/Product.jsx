@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { getProduct } from '../API/fetchProducts';
 import { useParams } from 'react-router-dom';
 import MyTitle from '../components/UI/title/MyTitle';
+// import { checkBasket } from '../API/fetchBasket';
+import { useSelector } from 'react-redux';
 
 const Product = () => {
+    const user = useSelector(state => state.user);
     const { type, id } = useParams();
     const [product, setProduct] = useState({
         name: '',
@@ -16,6 +19,9 @@ const Product = () => {
             const data = await getProduct(type, id);
             setProduct(data);
             console.log(data);
+            if (user.isAuth) {
+                // const basketData = await checkBasket(token, id);
+            }
         }
         getData();
     }, []);
@@ -39,8 +45,8 @@ const Product = () => {
                         </div>
                     </div>
                     <div className="product__bottom">
-                        <div className="product__price">{product.price}</div>
-                        <button className="product__basket">Добавить в корзину</button>
+                        <div className="product__price">{product.price} рублей</div>
+                        <button className="product__basket">в корзину</button>
                     </div>
                 </div>
             </div>

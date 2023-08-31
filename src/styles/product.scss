@@ -24,6 +24,25 @@
     gap: 10px;
 }
 
+.product__bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product__basket {
+    font-size: 25px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color:  #10C44C;
+    border: 0;
+    border-radius: 10px;
+}
+
 .product__info {
     display: flex;
     flex-direction: column;
