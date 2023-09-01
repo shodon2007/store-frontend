@@ -1,6 +1,6 @@
 import axios from "axios";
+import { URL } from "../consts/consts";
 
 export async function getCatalog() {
-    const resp = await axios.get('http://localhost:3000/catalog/');
-    return resp.data;
+    return await axios.get(`${URL}/catalog`);
 }

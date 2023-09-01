@@ -6,12 +6,16 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
 import './styles/index.scss';
+import ReactQuery from './components/ReactQuery';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <ReactQuery>
+        <App />
+      </ReactQuery>
     </Provider>
   </BrowserRouter>
 );

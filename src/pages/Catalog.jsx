@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { getCatalog } from '../API/fetchCatalog';
+import React from 'react'
 import { Link } from 'react-router-dom';
+import { useCatalog } from '../hooks/useCatalog';
 
 const Catalog = () => {
-    const [type, setType] = useState([]);
-    useEffect(() => {
-        async function updateType() {
-            const data = await getCatalog();
-            setType(data);
-        }
-        updateType();
-    }, []);
+    const { isLoading, error, data } = useCatalog();
+
+    if (isLoading) {
+        return <h1>Загрузка...</h1>
+    }
+
+    if (error) {
+        return <h1>Ошибка при получении данных</h1>
+    }
+
     return (
         <div className='catalog'>
-            {type.map((catalogItem, index) => {
+            {data.map((catalogItem, index) => {
                 return <Link to={`/${catalogItem.name}`} key={index} className='catalog__item'>
                     <img src={`http://localhost:3000${catalogItem.img}`} alt="img" />
                     <div>{catalogItem.name_ru}</div>

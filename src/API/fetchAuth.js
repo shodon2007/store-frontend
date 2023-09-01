@@ -1,8 +1,9 @@
 import axios from "axios";
+import { URL } from "../consts/consts";
 
 export async function fetchLogin(login, password) {
     let errorMessage = '';
-    const resp = await axios.get('http://localhost:3000/auth/login', {
+    const resp = await axios.get(`${URL}/auth/login`, {
         params: {
             login,
             password,
@@ -22,7 +23,7 @@ export async function fetchLogin(login, password) {
 
 export async function registration(login, password) {
     let errorMessage = '';
-    const resp = await axios.post('http://localhost:3000/auth/registration', {
+    const resp = await axios.post(`${URL}/auth/registration`, {
         login,
         password,
     }).catch(error => {
