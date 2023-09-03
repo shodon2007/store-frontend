@@ -3,7 +3,7 @@ import classes from './SmallModal.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeModal } from '../../../store/modalSlice';
 
-const SmallModal = ({ text, type }) => {
+const SmallModal = () => {
     const modal = useSelector(state => state.modal)
     const dispatch = useDispatch();
     setTimeout(() => {
