@@ -1,52 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import { getProduct } from '../API/fetchProducts';
-import { useParams } from 'react-router-dom';
+import React from 'react'
+import { Navigate, useParams } from 'react-router-dom';
+
 import MyTitle from '../components/UI/title/MyTitle';
-// import { checkBasket } from '../API/fetchBasket';
-import { useSelector } from 'react-redux';
+import { URL } from '../consts/consts';
+import { useProduct } from '../hooks/useProducts';
+import classes from '../styles/Product.module.scss';
+import { useCheckBasket } from '../hooks/useBasket';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBasket, removeBasket } from '../API/fetchBasket';
+import { showModal } from '../store/modalSlice';
 
 const Product = () => {
     const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const { type, id } = useParams();
-    const [product, setProduct] = useState({
-        name: '',
-        attributes: [
-        ],
-        price: 0,
-    });
-    useEffect(() => {
-        async function getData() {
-            const data = await getProduct(type, id);
-            setProduct(data);
-            console.log(data);
-            if (user.isAuth) {
-                // const basketData = await checkBasket(token, id);
-            }
-        }
-        getData();
-    }, []);
+    const { isFetching, data: products } = useProduct(type, id);
+    const { isFetching: basketLoading, data: basketCheck, refetch: refetchBasket } = useCheckBasket(id);
+    if (isFetching) {
+        return <div>загрузка...</div>
+    }
 
     return (
-        <div className='product'>
-            <MyTitle className='product__title'>{product.name}</MyTitle>
-            <div className="product__item">
-                <img src={`http://localhost:3000/${product.img}`} alt="phone" />
-                <div className="product__info">
-                    <div className="product__top">
-                        <div className="product__attributes">
+        <div className={classes.product}>
+            <MyTitle>{products.name}</MyTitle>
+            <div className={classes.body}>
+                <img src={`${URL}${products.img}`} alt="phone" />
+                <div>
+                    <div className={classes.top}>
+                        <div className={classes.attributes}>
                             <h3>Характеристики</h3>
-                            <div className="attributes__items">
-                                {product.attributes.map(attribute => {
-                                    return <div className='attribute__item'>
+                            <div>
+                                {products.attributes.map(attribute => {
+                                    return <div className={classes.attribute} key={attribute.title}>
                                         <b>{attribute.title}</b>{` : ${attribute.description}`}
                                     </div>
                                 })}
                             </div>
                         </div>
                     </div>
-                    <div className="product__bottom">
-                        <div className="product__price">{product.price} рублей</div>
-                        <button className="product__basket">в корзину</button>
+                    <div className={classes.bottom}>
+                        <div>{products.price} рублей</div>
+                        {basketLoading || !basketCheck
+                            ? <button onClick={async () => {
+                                if (!user.isAuth) {
+                                    dispatch(showModal({ text: 'Чуууваак, сначала зарегайся!!', type: 'good' }));
+                                    return <Navigate replace to={'/registration'} />
+                                }
+                                await addBasket(user.user, id);
+                                refetchBasket();
+                            }}>в корзину</button>
+                            : <button onClick={async () => {
+                                await removeBasket(user.user, id)
+                                refetchBasket();
+                            }}>удалить из корзины</button>
+                        }
                     </div>
                 </div>
             </div>

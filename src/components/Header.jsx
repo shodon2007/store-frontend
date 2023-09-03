@@ -21,19 +21,21 @@ const Header = () => {
                 shodon store
             </Link>
             <nav className='header__nav'>
-                <div className='header__item'>
+                <Link to='/basket' className='header__item'>
                     <img src={basketSvg} alt="basket img" />
-                    <Link to={'/basket'}>
-                        корзина
+                    <span>корзина</span>
+                </Link>
+                {user.isAuth
+                    ? <Link to='#' onClick={exitClick} className='header__item'>
+                        <img src={userSvg} alt="user img" />
+                        <span>выйти</span>
                     </Link>
-                </div>
-                <div className='header__item'>
-                    <img src={userSvg} alt="user img" />
-                    {user.isAuth
-                        ? <a href='#' onClick={exitClick}>выйти</a>
-                        : <Link to={'/login'}>войти</Link>
-                    }
-                </div>
+                    : <Link to='/login' className='header__item'>
+                        <img src={userSvg} alt="user img" />
+                        <span>войти</span>
+                    </Link>
+                }
+
             </nav>
         </header>
     )

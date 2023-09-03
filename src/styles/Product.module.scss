@@ -1,0 +1,55 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    
+    &>img {
+        max-width: 100%;
+    }
+
+    &>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+
+    &>div {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &>button {
+        font-size: 25px;
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: #10C44C;
+        border: 0;
+        border-radius: 10px;
+    }
+}
+
+.attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.attribute {
+    display: flex;
+}

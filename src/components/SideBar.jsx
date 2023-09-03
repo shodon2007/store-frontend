@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useBrands } from '../hooks/useBrands';
+import { useParams } from 'react-router-dom';
 
-const SideBar = ({ setCopyProducts, products, brands }) => {
-    const [brand, setBrand] = useState('all');
+const SideBar = ({ brand, setBrand }) => {
+    const { type } = useParams();
+    const { isFetching, data } = useBrands(type);
 
-    useEffect(() => {
-        setCopyProducts([...products].filter(product => {
-            if (brand === 'all') return true;
-            return product.brand === brand;
-        }));
-    }, [brand]);
+    if (isFetching) {
+        return <div>загрузка</div>
+    }
+
+    if (data.length === 0) {
+        return <div></div>
+    }
 
     return (
         <div className='products__buttons'>
@@ -19,15 +23,16 @@ const SideBar = ({ setCopyProducts, products, brands }) => {
             >
                 Все
             </button>
-            {brands.map(product => {
+            {data.map(brandItem => {
                 return <button
-                    key={product.brand}
-                    onClick={() => setBrand(product.brand)}
-                    className={`${product.brand === brand ? 'active' : ''}`}
+                    key={brandItem.name}
+                    onClick={() => setBrand(brandItem.name)}
+                    className={`${brandItem.name === brand ? 'active' : ''}`}
                 >
-                    {product.brand}
+                    {brandItem.name}
                 </button>
-            })}
+            })
+            }
         </div>
     )
 }

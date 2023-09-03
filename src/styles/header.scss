@@ -16,6 +16,8 @@ header {
 }
 
 .header__item {
+    color: black;
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -23,9 +25,5 @@ header {
     &>img {
         width: 22px;
         height: 22px;
-    }
-    &>a {
-        color: black;
-        text-decoration: none;
     }
 }

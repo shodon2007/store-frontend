@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useCatalog } from '../hooks/useCatalog';
+import { URL } from '../consts/consts';
 
 const Catalog = () => {
     const { isLoading, error, data } = useCatalog();
@@ -16,8 +17,9 @@ const Catalog = () => {
     return (
         <div className='catalog'>
             {data.map((catalogItem, index) => {
+                console.log(catalogItem);
                 return <Link to={`/${catalogItem.name}`} key={index} className='catalog__item'>
-                    <img src={`http://localhost:3000${catalogItem.img}`} alt="img" />
+                    <img src={`${URL}${catalogItem.img}`} alt="img" />
                     <div>{catalogItem.name_ru}</div>
                 </Link>
             })}
