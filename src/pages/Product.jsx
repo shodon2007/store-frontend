@@ -16,45 +16,44 @@ const Product = () => {
     const { type, id } = useParams();
     const { isFetching, data: products } = useProduct(type, id);
     const { isFetching: basketLoading, data: basketCheck, refetch: refetchBasket } = useCheckBasket(id);
+
     if (isFetching) {
         return <div>загрузка...</div>
     }
 
     return (
         <div className={classes.product}>
-            <MyTitle>{products.name}</MyTitle>
-            <div className={classes.body}>
-                <img src={`${URL}${products.img}`} alt="phone" />
-                <div>
-                    <div className={classes.top}>
-                        <div className={classes.attributes}>
-                            <h3>Характеристики</h3>
-                            <div>
-                                {products.attributes.map(attribute => {
-                                    return <div className={classes.attribute} key={attribute.title}>
-                                        <b>{attribute.title}</b>{` : ${attribute.description}`}
-                                    </div>
-                                })}
-                            </div>
+            <img src={`${URL}${products.img}`} alt="phone" />
+            <div>
+                <div className={classes.top}>
+                    <MyTitle>{products.name}</MyTitle>
+                    <div className={classes.attributes}>
+                        <h3>Характеристики</h3>
+                        <div>
+                            {products.attributes.map(attribute => {
+                                return <div className={classes.attribute} key={attribute.title}>
+                                    {attribute.title} : {attribute.description}
+                                </div>
+                            })}
                         </div>
                     </div>
-                    <div className={classes.bottom}>
-                        <div>{products.price} рублей</div>
-                        {basketLoading || !basketCheck
-                            ? <button onClick={async () => {
-                                if (!user.isAuth) {
-                                    dispatch(showModal({ text: 'Чуууваак, сначала зарегайся!!', type: 'good' }));
-                                    return <Navigate replace to={'/registration'} />
-                                }
-                                await addBasket(user.user, id);
-                                refetchBasket();
-                            }}>в корзину</button>
-                            : <button onClick={async () => {
-                                await removeBasket(user.user, id)
-                                refetchBasket();
-                            }}>удалить из корзины</button>
-                        }
-                    </div>
+                </div>
+                <div className={classes.bottom}>
+                    <div>{products.price} рублей</div>
+                    {basketLoading || !basketCheck
+                        ? <button onClick={async () => {
+                            if (!user.isAuth) {
+                                dispatch(showModal({ text: 'Чуууваак, сначала зарегайся!!', type: 'good' }));
+                                return <Navigate replace to={'/registration'} />
+                            }
+                            await addBasket(user.user, id);
+                            refetchBasket();
+                        }}>в корзину</button>
+                        : <button onClick={async () => {
+                            await removeBasket(user.user, id)
+                            refetchBasket();
+                        }}>удалить из корзины</button>
+                    }
                 </div>
             </div>
         </div>

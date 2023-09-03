@@ -1,18 +1,14 @@
-.product {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+@import './variables.scss';
 
-.body {
+.product {
     display: grid;
-    grid-template-columns: max-content 1fr;
     gap: 10px;
-    
+    grid-template-columns: max-content 1fr;
+
     &>img {
         max-width: 100%;
     }
-
+    
     &>div {
         display: flex;
         flex-direction: column;
@@ -23,11 +19,13 @@
 .top {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     &>div {
         font-size: 20px;
@@ -35,21 +33,15 @@
     }
 
     &>button {
-        font-size: 25px;
-        cursor: pointer;
-        padding: 10px 20px;
-        background-color: #10C44C;
-        border: 0;
-        border-radius: 10px;
+        @include button(25px);
     }
 }
 
 .attributes {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .attribute {
-    display: flex;
+    display: grid;
 }

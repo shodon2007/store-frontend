@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { URL } from '../consts/consts'
 import { useProducts } from '../hooks/useProducts';
+import classes from '../styles/Products.module.scss';
 
 const ProductList = ({ brand }) => {
     const { type } = useParams();
@@ -17,16 +18,21 @@ const ProductList = ({ brand }) => {
 
     return (
         <div>
-            <div className="products__list">
+            <div className={classes.productList}>
                 {data.map(product => {
-                    return <Link
-                        key={product.name}
-                        className='products__product'
-                        to={`${product.id}`}
-                    >
-                        <img src={`${URL}/${product.img}`} alt="product-img" />
-                        {product.name}
-                    </Link>
+                    return (
+                        <Link
+                            key={product.name}
+                            className={classes.product}
+                            to={`${product.id}`}
+                        >
+                            <img src={`${URL}/${product.img}`} alt="product-img" />
+                            <div className="bottom">
+                                <div>{product.name}</div>
+                                <div>{product.price} рублей</div>
+                            </div>
+                        </Link>
+                    )
                 })}
             </div>
         </div>

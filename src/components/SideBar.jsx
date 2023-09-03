@@ -1,6 +1,7 @@
 import React from 'react'
 import { useBrands } from '../hooks/useBrands';
 import { useParams } from 'react-router-dom';
+import classes from '../styles/Products.module.scss';
 
 const SideBar = ({ brand, setBrand }) => {
     const { type } = useParams();
@@ -15,11 +16,11 @@ const SideBar = ({ brand, setBrand }) => {
     }
 
     return (
-        <div className='products__buttons'>
+        <div className={classes.sidebar}>
             <h3>Производители</h3>
             <button
                 onClick={() => setBrand('all')}
-                className={`${brand === 'all' ? 'active' : ''}`}
+                className={`${classes.button} ${brand === 'all' ? classes.active : ''}`}
             >
                 Все
             </button>
@@ -27,12 +28,11 @@ const SideBar = ({ brand, setBrand }) => {
                 return <button
                     key={brandItem.name}
                     onClick={() => setBrand(brandItem.name)}
-                    className={`${brandItem.name === brand ? 'active' : ''}`}
+                    className={`${classes.button} ${brandItem.name === brand ? classes.active : ''}`}
                 >
                     {brandItem.name}
                 </button>
-            })
-            }
+            })}
         </div>
     )
 }

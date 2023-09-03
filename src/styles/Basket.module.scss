@@ -1,0 +1,45 @@
+@import './variables.scss';
+
+.basket {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+
+    &>.left {
+        color: #5B5B5B;
+    }
+
+    &>.right {
+        font-weight: bold;
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.button {
+    @include button(30px);
+}

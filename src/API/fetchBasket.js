@@ -11,6 +11,14 @@ export async function addBasket(user, device_id) {
     return resp.data;
 }
 
+export async function getBasket(user) {
+    return await axios.get(`${URL}/basket/get`, {
+        params: {
+            user
+        }
+    })
+}
+
 export async function removeBasket(user, device_id) {
     const resp = await axios.get(`${URL}/basket/remove`, {
         params: {
