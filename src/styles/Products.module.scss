@@ -63,3 +63,38 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+    .productList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .product {
+        padding: 5px 10px;
+        text-align: center;
+
+        &>div {
+            justify-content: end;
+            div:nth-child(2) {
+                display: none;
+            }
+        }
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .productList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .product {
+        font-size: 14px;
+    }
+}

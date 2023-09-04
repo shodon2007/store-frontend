@@ -10,6 +10,12 @@ header {
     color: black;
 }
 
+.menu__svg {
+    display: none;
+    width: 22px;
+    height: 22px;
+}
+
 .header__nav {
     display: flex;
     gap: 10px;
@@ -25,5 +31,37 @@ header {
     &>img {
         width: 22px;
         height: 22px;
+    }
+}
+
+@media (max-width: 1200px ) {
+    .menu__svg {
+        display: block;
+    }
+
+    .header__nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: rgb(199, 199, 199);
+        padding: 20px 10px;
+        right: 0;
+        border-radius: 5px;
+    }
+
+    .header__item {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .header__nav.active {
+        display: flex;
+    }
+}
+
+@media (max-width: 500px) {
+    .header__title {
+        font-size: 20px;
     }
 }

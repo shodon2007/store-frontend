@@ -21,3 +21,17 @@
         max-width: 100%;
     }
 }
+
+@media (max-width: 1200px) {
+    .catalog {
+        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalog__item {
+        padding: 10px 20px;
+        border-radius: 7px;
+        font-size: 14px;
+        gap: 5px;
+    }
+}

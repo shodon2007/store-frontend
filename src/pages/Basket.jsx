@@ -40,9 +40,9 @@ const Basket = () => {
                 })}
             </div>
             <div className={classes.bottom}>
-                <div className={classes.price}>
+                <MyTitle>
                     Итого: {data.map(product => product.price).reduce((acc, data) => acc + data)} рублей
-                </div>
+                </MyTitle>
                 <button className={classes.button}>Заказать</button>
             </div>
         </div>
