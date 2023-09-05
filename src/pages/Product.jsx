@@ -9,6 +9,7 @@ import { useCheckBasket } from '../hooks/useBasket';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBasket, removeBasket } from '../API/fetchBasket';
 import { showModal } from '../store/modalSlice';
+import MyButton from '../components/UI/button/MyButton';
 
 const Product = () => {
     const user = useSelector(state => state.user);
@@ -41,18 +42,18 @@ const Product = () => {
                 <div className={classes.bottom}>
                     <div>{products.price} рублей</div>
                     {basketLoading || !basketCheck
-                        ? <button onClick={async () => {
+                        ? <MyButton onClick={async () => {
                             if (!user.isAuth) {
                                 dispatch(showModal({ text: 'Чуууваак, сначала зарегайся!!', type: 'good' }));
                                 return <Navigate replace to={'/registration'} />
                             }
                             await addBasket(user.user, id);
                             refetchBasket();
-                        }}>в корзину</button>
-                        : <button onClick={async () => {
+                        }}>в корзину</MyButton>
+                        : <MyButton onClick={async () => {
                             await removeBasket(user.user, id)
                             refetchBasket();
-                        }}>удалить из корзины</button>
+                        }}>удалить из корзины</MyButton>
                     }
                 </div>
             </div>

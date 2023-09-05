@@ -5,6 +5,7 @@ import classes from '../styles/Basket.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal } from '../store/modalSlice';
 import { Navigate } from 'react-router-dom';
+import MyButton from '../components/UI/button/MyButton';
 
 const Basket = () => {
     const user = useSelector(state => state.user);
@@ -43,7 +44,7 @@ const Basket = () => {
                 <MyTitle>
                     Итого: {data.map(product => product.price).reduce((acc, data) => acc + data)} рублей
                 </MyTitle>
-                <button className={classes.button}>Заказать</button>
+                <MyButton className={classes.button}>Заказать</MyButton>
             </div>
         </div>
     )
