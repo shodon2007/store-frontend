@@ -14,7 +14,6 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Catalog />} />
-          {/* <Route path='admin' element={<Admin />} /> */}
           <Route path=':type' element={<Products />} />
           <Route path=':type/:id' element={<Product />} />
           <Route path='basket' element={<Basket />} />
