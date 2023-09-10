@@ -17,24 +17,22 @@ const ProductList = ({ brand }) => {
     }
 
     return (
-        <div>
-            <div className={classes.productList}>
-                {data.map(product => {
-                    return (
-                        <Link
-                            key={product.name}
-                            className={classes.product}
-                            to={`${product.id}`}
-                        >
-                            <img src={`${URL}/${product.img}`} alt="product-img" />
-                            <div className="bottom">
-                                <div>{product.name}</div>
-                                <div>{product.price} рублей</div>
-                            </div>
-                        </Link>
-                    )
-                })}
-            </div>
+        <div className={classes.productList}>
+            {data.map(product => {
+                return (
+                    <Link
+                        key={product.name}
+                        className={classes.product}
+                        to={`${product.id}`}
+                    >
+                        <img src={`${URL}/${product.img}`} alt="product-img" />
+                        <div className="bottom">
+                            <div>{product.name}</div>
+                            <div>{product.price} рублей</div>
+                        </div>
+                    </Link>
+                )
+            })}
         </div>
     )
 }
