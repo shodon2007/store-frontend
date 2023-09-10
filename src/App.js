@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import Layout from './components/Layout'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login.jsx';

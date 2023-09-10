@@ -25,10 +25,13 @@ const Header = () => {
             <div className="right">
                 <img src={menuSvg} alt='menu svg' className='menu__svg' onClick={() => setShowBurger(!showBurger)} />
                 <nav className={`header__nav ${showBurger ? 'active' : ''}`}>
-                    <Link to='/basket' className='header__item'>
-                        <img src={basketSvg} alt="basket img" />
-                        <span>корзина</span>
-                    </Link>
+                    {user.isAuth
+                        ? <Link to='/basket' className='header__item'>
+                            <img src={basketSvg} alt="basket img" />
+                            <span>корзина</span>
+                        </Link>
+                        : ''
+                    }
                     {user.isAuth
                         ? <Link to='#' onClick={exitClick} className='header__item'>
                             <img src={userSvg} alt="user img" />

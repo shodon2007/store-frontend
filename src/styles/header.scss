@@ -8,6 +8,9 @@ header {
     font-size: 30px;
     text-decoration: none;
     color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menu__svg {
@@ -35,28 +38,23 @@ header {
 }
 
 @media (max-width: 1200px ) {
-    .menu__svg {
-        display: block;
+    header {
+        padding: 5px 0;
     }
-
     .header__nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        background-color: rgb(199, 199, 199);
-        padding: 20px 10px;
-        right: 0;
-        border-radius: 5px;
+        gap: 3px;
     }
 
     .header__item {
         display: flex;
-        flex-direction: row;
-        gap: 5px;
-    }
-
-    .header__nav.active {
-        display: flex;
+        gap: 0px;
+        &>span {
+            font-size: 14px;
+        }
+        &>img {
+            width: 18px;
+            height: 18px;
+        }
     }
 }
 

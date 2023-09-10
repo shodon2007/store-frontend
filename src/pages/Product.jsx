@@ -30,11 +30,16 @@ const Product = () => {
                     <MyTitle>{products.name}</MyTitle>
                     <div className={classes.attributes}>
                         <h3>Характеристики</h3>
-                        <div>
+                        <div >
                             {products.attributes.map(attribute => {
-                                return <div className={classes.attribute} key={attribute.title}>
-                                    {attribute.title} : {attribute.description}
-                                </div>
+                                return <>
+                                    <div className={classes.left}>
+                                        {attribute.title}
+                                    </div>
+                                    <div className={classes.right}>
+                                        {attribute.description}
+                                    </div>
+                                </>
                             })}
                         </div>
                     </div>
@@ -57,7 +62,7 @@ const Product = () => {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
