@@ -1,12 +1,15 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import Layout from './components/Layout'
 import { Route, Routes } from 'react-router-dom'
-import Login from './pages/Login.jsx';
-import Registration from './pages/Registration';
-import Catalog from './pages/Catalog';
-import Basket from './pages/Basket';
-import Products from './pages/Products';
-import Product from './pages/Product';
+import Login from './pages/Auth/Login.jsx';
+import Registration from './pages/Auth/Registration.jsx';
+import Catalog from './pages/Catalog/Catalog';
+import Products from './pages/Products/Products';
+import Product from './pages/Product/Product';
+import Basket from './pages/Basket/Basket';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const App = () => {
   return (

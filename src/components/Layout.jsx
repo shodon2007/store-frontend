@@ -1,13 +1,17 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import SmallModal from './UI/small-modal/SmallModal'
-import Header from './Header'
+import Header from './Header/Header'
+import { ToastContainer } from 'react-toastify'
 
 const Layout = () => {
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar
+            />
             <Header />
-            <SmallModal />
             <Outlet />
         </>
     )

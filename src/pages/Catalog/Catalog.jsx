@@ -1,0 +1,38 @@
+import React from 'react'
+import { Link } from 'react-router-dom';
+
+import { URL } from '../../consts/consts';
+import MyText from '../../components/UI/text/MyText';
+import Loading from '../Loading';
+import Error404 from '../Error404';
+import { useCatalog } from '../../hooks/useCatalog';
+
+import classes from './Catalog.module.scss';
+
+const Catalog = () => {
+    const { isLoading, error, data } = useCatalog();
+
+    if (isLoading) {
+        return <Loading />
+    }
+
+    if (error) {
+        return <Error404 />
+    }
+
+    return (
+        <div className={classes.catalog}>
+            {data.map((catalogItem, index) => {
+                const imgUrl = `${URL}${catalogItem.img}`;
+                const link = `/${catalogItem.name}`;
+
+                return <Link to={link} key={index} className={classes.item}>
+                    <img className={classes.img} src={imgUrl} alt="catalog img" />
+                    <MyText>{catalogItem.name_ru}</MyText>
+                </Link>
+            })}
+        </div>
+    )
+}
+
+export default Catalog

@@ -1,0 +1,52 @@
+@import '../../styles/vars.scss';
+
+.product {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    background-color: $bg;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.title  {
+    text-align: center;
+}
+
+.img {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .product {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    .body {
+        gap: 10px;
+    }
+
+    .top {
+        gap: 10px;
+    }
+}

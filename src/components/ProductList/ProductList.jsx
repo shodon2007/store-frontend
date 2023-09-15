@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { URL } from '../consts/consts'
-import { useProducts } from '../hooks/useProducts';
-import classes from '../styles/Products.module.scss';
+import { URL } from '../../consts/consts'
+import { useProducts } from '../../hooks/useProducts';
+import classes from './ProductList.module.scss';
+import Error404 from '../../pages/Error404';
+
+import MyText from '../UI/text/MyText';
 
 const ProductList = ({ brand }) => {
     const { type } = useParams();
@@ -12,12 +15,14 @@ const ProductList = ({ brand }) => {
         return <div>Загрузка данных...</div>
     }
 
-    if (data.length === 0 || !data) {
-        return <h1>404, Ничего не найдено, сорри чувак =((</h1>
+    const notFound = data.length === 0 || !data;
+
+    if (notFound) {
+        return <Error404 />
     }
 
     return (
-        <div className={classes.productList}>
+        <div className={classes.list}>
             {data.map(product => {
                 return (
                     <Link
@@ -25,10 +30,10 @@ const ProductList = ({ brand }) => {
                         className={classes.product}
                         to={`${product.id}`}
                     >
-                        <img src={`${URL}/${product.img}`} alt="product-img" />
-                        <div className="bottom">
-                            <div>{product.name}</div>
-                            <div>{product.price} рублей</div>
+                        <img className={classes.img} src={`${URL}/${product.img}`} alt="product-img" />
+                        <div className={classes.bottom}>
+                            <MyText>{product.name}</MyText>
+                            <div className={classes.price}>{product.price} рублей</div>
                         </div>
                     </Link>
                 )

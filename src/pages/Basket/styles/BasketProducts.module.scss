@@ -1,0 +1,35 @@
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.product {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img {
+    max-width: 100%;
+}
+
+.name {
+    color: black;
+}
+
+.trash {
+    width: 22px;
+    height: 22px;
+    max-width: 100%;
+}

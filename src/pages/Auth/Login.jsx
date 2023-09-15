@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { fetchLogin } from '../API/fetchAuth'
+import { fetchLogin } from '../../API/fetchAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../store/userSlice';
+import { loginUser } from '../../store/userSlice';
 import { Link, Navigate } from 'react-router-dom';
-import { showModal } from '../store/modalSlice';
-import { saveUserInLocalStorage } from '../utils/saveInLocalStorage';
-import MyInput from '../components/UI/input/MyInput';
-import MyButton from '../components/UI/button/MyButton';
+import { saveUserInLocalStorage } from '../../utils/saveInLocalStorage';
+import MyInput from '../../components/UI/input/MyInput';
+import MyButton from '../../components/UI/button/MyButton';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -18,10 +18,10 @@ const Login = () => {
         e.preventDefault();
         const resp = await fetchLogin(login, password);
         if (resp.status === 'error') {
-            return dispatch(showModal({ text: resp.message, type: 'bad' }));
+            return toast.error(resp.message);
         }
         dispatch(loginUser({ token: resp.token, user: resp.user }));
-        dispatch(showModal({ text: resp.message, type: 'good' }));
+        toast.success(resp.message);
         saveUserInLocalStorage(resp.token, resp.user);
     }
     if (userState.isAuth) {

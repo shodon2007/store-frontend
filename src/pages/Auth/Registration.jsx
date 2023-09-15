@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { registration } from '../API/fetchAuth'
+import { registration } from '../../API/fetchAuth'
 import { useDispatch, useSelector } from 'react-redux';
-import { showModal } from '../store/modalSlice';
-import { loginUser } from '../store/userSlice';
+import { loginUser } from '../../store/userSlice';
 import { Link, Navigate } from 'react-router-dom';
-import { saveUserInLocalStorage } from '../utils/saveInLocalStorage';
-import MyInput from '../components/UI/input/MyInput';
-import MyButton from '../components/UI/button/MyButton';
-import MyTitle from '../components/UI/title/MyTitle';
+import { saveUserInLocalStorage } from '../../utils/saveInLocalStorage';
+import MyInput from '../../components/UI/input/MyInput';
+import MyButton from '../../components/UI/button/MyButton';
+import MyTitle from '../../components/UI/title/MyTitle';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
     const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const Registration = () => {
         const resp = await registration(login, password);
         console.log(resp);
         if (resp.status === 'error') {
-            return dispatch(showModal({ text: resp.message, type: 'bad' }))
+            return toast.error(resp.message);
         }
         dispatch(loginUser({ token: resp.token, user: resp.user }));
-        dispatch(showModal({ text: resp.message, type: 'good' }));
+        toast.success(resp.message);
         saveUserInLocalStorage(resp.token, resp.user);
     }
 
