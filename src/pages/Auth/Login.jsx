@@ -8,6 +8,8 @@ import MyInput from '../../components/UI/input/MyInput';
 import MyButton from '../../components/UI/button/MyButton';
 import { toast } from 'react-toastify';
 
+import classes from './Auth.module.scss';
+
 const Login = () => {
     const dispatch = useDispatch();
     const userState = useSelector(state => state.user);
@@ -29,9 +31,9 @@ const Login = () => {
     }
 
     return (
-        <div className='login auth'>
+        <div className={classes.auth}>
             <h1>Войти</h1>
-            <form>
+            <form className={classes.form}>
                 <MyInput placeholder='имя пользователя' value={login} onChange={e => setLogin(e.target.value)} />
                 <MyInput placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)} />
                 <MyButton onClick={loginClick}>войти</MyButton>

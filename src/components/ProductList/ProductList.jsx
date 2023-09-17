@@ -6,6 +6,7 @@ import classes from './ProductList.module.scss';
 import Error404 from '../../pages/Error404';
 
 import MyText from '../UI/text/MyText';
+import MyPrice from '../UI/price/MyPrice';
 
 const ProductList = ({ brand }) => {
     const { type } = useParams();
@@ -33,7 +34,7 @@ const ProductList = ({ brand }) => {
                         <img className={classes.img} src={`${URL}/${product.img}`} alt="product-img" />
                         <div className={classes.bottom}>
                             <MyText>{product.name}</MyText>
-                            <div className={classes.price}>{product.price} рублей</div>
+                            <MyPrice>{product.price} рублей</MyPrice>
                         </div>
                     </Link>
                 )

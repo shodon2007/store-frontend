@@ -10,6 +10,7 @@ import BasketProducts from './BasketProducts';
 import classes from './styles/Basket.module.scss';
 import Loading from '../Loading';
 import { toast } from 'react-toastify';
+import MySubtitle from '../../components/UI/subtitle/MySubtitle';
 
 
 const Basket = memo(() => {
@@ -21,7 +22,7 @@ const Basket = memo(() => {
     const isAuth = useMemo(() => user.isAuth, []);
 
     if (!isAuth) {
-        toast.error('Бро, тебе сначало надо зарегестрироваться')
+        toast.error('Бро, тебе сначало надо зарегестрироваться');
         return <Navigate replace to={'/'} />
     }
 
@@ -33,15 +34,17 @@ const Basket = memo(() => {
         return <MyTitle>Корзина пуста, купи что нибудь</MyTitle>
     }
 
+    function cringeClick() {
+        toast.error('Чел ты реально думал что тут можно заказать??? ххахахаха Кринж')
+    }
+
     return (
         <div className={classes.main}>
             <MyTitle>Корзина</MyTitle>
             <BasketProducts data={memoizedData} />
             <div className={classes.bottom}>
-                <MyTitle>
-                    Итого: {totalPrice} рублей
-                </MyTitle>
-                <MyButton>Купить</MyButton>
+                <MySubtitle>Итого: {totalPrice} рублей</MySubtitle>
+                <MyButton onClick={cringeClick}>Купить</MyButton>
             </div>
         </div>
     );

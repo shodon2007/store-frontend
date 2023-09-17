@@ -8,6 +8,9 @@ import { URL } from '../../consts/consts';
 import trashSvg from '../../static/trash.svg';
 
 import classes from './styles/BasketProducts.module.scss'
+import MyText from '../../components/UI/text/MyText';
+import MySubtitle from '../../components/UI/subtitle/MySubtitle';
+import MyPrice from '../../components/UI/price/MyPrice';
 
 
 const BasketProducts = memo(({ data }) => {
@@ -24,11 +27,13 @@ const BasketProducts = memo(({ data }) => {
         <div className={classes.products}>
             {data.map(product => {
                 return <div key={product.name} className={classes.product}>
-                    <img src={`${URL}/${product.img}`} className={classes.img} alt="product-img" />
+                    <Link to={`/${product.type}/${product.id}`}>
+                        <img src={`${URL}/${product.img}`} className={classes.img} alt="product-img" />
+                    </Link>
                     <div className={classes.bottom}>
                         <Link className={classes.name} to={`/${product.type}/${product.id}`}>
-                            <div>{product.name}</div>
-                            <div>{product.price} рублей</div>
+                            <MyText>{product.name}</MyText>
+                            <MyPrice>{product.price} рублей</MyPrice>
                         </Link>
                         <img src={trashSvg} alt="trash" className={classes.trash} onClick={() => trashClick(product.id)} />
                     </div>

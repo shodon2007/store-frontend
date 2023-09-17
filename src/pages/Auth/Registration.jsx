@@ -9,6 +9,8 @@ import MyButton from '../../components/UI/button/MyButton';
 import MyTitle from '../../components/UI/title/MyTitle';
 import { toast } from 'react-toastify';
 
+import classes from './Auth.module.scss';
+
 const Registration = () => {
     const dispatch = useDispatch();
     const userState = useSelector(state => state.user);
@@ -18,23 +20,33 @@ const Registration = () => {
     async function registrationClick(e) {
         e.preventDefault();
         const resp = await registration(login, password);
-        console.log(resp);
+
         if (resp.status === 'error') {
-            return toast.error(resp.message);
+            return errorLogin(resp);
         }
+
+        successLogin(resp);
+    }
+
+    function errorLogin(resp) {
+        toast.error(resp.message);
+    }
+
+    function successLogin(resp) {
         dispatch(loginUser({ token: resp.token, user: resp.user }));
         toast.success(resp.message);
         saveUserInLocalStorage(resp.token, resp.user);
     }
+
 
     if (userState.isAuth) {
         return <Navigate replace to={'/'} />
     }
 
     return (
-        <div className='registration auth'>
+        <div className={classes.auth}>
             <MyTitle>Регистрация</MyTitle>
-            <form>
+            <form className={classes.form}>
                 <MyInput placeholder='имя пользователя' value={login} onChange={e => setLogin(e.target.value)} />
                 <MyInput placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)} />
                 <MyButton onClick={registrationClick}>зарегестрироваться</MyButton>

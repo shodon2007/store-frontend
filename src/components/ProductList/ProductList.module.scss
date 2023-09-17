@@ -3,7 +3,7 @@
 .list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    background-color: white;
 }
 
 .product {
@@ -12,12 +12,18 @@
     flex-direction: column;
     text-align: left;
     gap: 10px;
-    background-color: white;
     padding: 20px 30px;
     border-radius: 10px;
     font-size: 16px;
     color: black;
     text-decoration: none;
+    
+    &:hover {
+        & div * {
+            transition: all 0.3s;
+            color: $bgAll;
+        }
+    }
 }
 
 .img {
@@ -33,11 +39,6 @@
     flex: 1 1 auto;
 }
 
-.price {
-    font-size: 20px;
-    font-weight: bold;
-}
-
 @media (max-width: 1200px) {
     .list {
         grid-template-columns: repeat(4, 1fr);
@@ -46,9 +47,6 @@
     .product {
         padding: 5px 10px;
         text-align: center;
-    }
-    .price {
-        display: none;
     }
 }
 

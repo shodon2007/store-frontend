@@ -1,0 +1,13 @@
+@import '../../styles/vars.scss';
+
+.products {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+}
+
+@media (max-width: 1200px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,2 +1,26 @@
-@import './header.scss';
-@import './style.scss';
+@import './vars.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body {
+    background-color:rgb(233, 233, 233);
+    overflow: scroll;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+    .app {
+        padding: 0 10px;
+    }
+}

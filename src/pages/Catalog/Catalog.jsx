@@ -23,11 +23,8 @@ const Catalog = () => {
     return (
         <div className={classes.catalog}>
             {data.map((catalogItem, index) => {
-                const imgUrl = `${URL}${catalogItem.img}`;
-                const link = `/${catalogItem.name}`;
-
-                return <Link to={link} key={index} className={classes.item}>
-                    <img className={classes.img} src={imgUrl} alt="catalog img" />
+                return <Link to={`/${catalogItem.name}`} key={index} className={classes.item}>
+                    <img className={classes.img} src={`${URL}${catalogItem.img}`} alt="catalog img" />
                     <MyText>{catalogItem.name_ru}</MyText>
                 </Link>
             })}
