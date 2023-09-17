@@ -1,9 +1,10 @@
 import axios from "axios";
 import { URL } from "../consts/consts";
+import { sendResponse } from "./sendResponse";
 
 export async function fetchLogin(login, password) {
     let errorMessage = '';
-    const resp = await axios.get(`${URL}/auth/login`, {
+    const resp = await sendResponse(`${URL}/auth/login`, {
         params: {
             login,
             password,

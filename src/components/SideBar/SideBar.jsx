@@ -1,12 +1,12 @@
 import React from 'react'
-import { useBrands } from '../../hooks/useBrands';
+import { useFilter } from '../../hooks/useFilter';
 import { useParams } from 'react-router-dom';
 import classes from './SideBar.module.scss';
 import MySubtitle from '../UI/subtitle/MySubtitle';
 
 const SideBar = ({ brand, setBrand }) => {
     const { type } = useParams();
-    const { isFetching, data } = useBrands(type);
+    const { isFetching, data } = useFilter(type);
 
     if (isFetching) {
         return <div>загрузка</div>

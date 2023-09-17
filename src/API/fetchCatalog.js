@@ -1,6 +1,6 @@
-import axios from "axios";
 import { URL } from "../consts/consts";
+import { sendResponse } from "./sendResponse";
 
 export async function getCatalog() {
-    return await axios.get(`${URL}/catalog`);
+    return await sendResponse(`${URL}/catalog`);
 }

@@ -1,41 +1,35 @@
-import axios from "axios";
 import { URL } from "../consts/consts";
+import { sendResponse } from "./sendResponse";
 
 export async function addBasket(user, device_id) {
-    const resp = await axios.get(`${URL}/basket/add`, {
+    return await sendResponse(`${URL}/basket/add`, {
         params: {
-            user,
-            device_id,
-        }
-    });
-    return resp.data;
-}
-
-export async function getBasket(user) {
-    return await axios.get(`${URL}/basket/get`, {
-        params: {
-            user
+            user, device_id
         }
     })
 }
 
-export async function removeBasket(user, device_id) {
-    const resp = await axios.get(`${URL}/basket/remove`, {
+export async function getBasket(user) {
+    return await sendResponse(`${URL}/basket/get`, {
         params: {
-            user,
-            device_id,
+            user
         }
     });
-    return resp.data;
+}
+
+export async function removeBasket(user, device_id) {
+    return await sendResponse(`${URL}/basket/remove`, {
+        params: {
+            user, device_id
+        }
+    });
 }
 
 export async function checkBasket(user, device_id) {
-    const data = await axios.get(`${URL}/basket/check`, {
+    return await sendResponse(`${URL}/basket/check`, {
         params: {
             user,
-            device_id,
+            device_id
         }
     });
-
-    return data;
 }
