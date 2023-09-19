@@ -2,10 +2,12 @@ import React, { memo, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
+
 import { exitUser } from '../../store/userSlice';
 import basketSvg from '../../static/basket.svg';
+
 import userSvg from '../../static/user.svg';
-import classes from './Header.module.scss'
+import classes from './Header.module.scss';
 
 
 const Header = memo(() => {

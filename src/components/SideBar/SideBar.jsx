@@ -3,13 +3,14 @@ import { useFilter } from '../../hooks/useFilter';
 import { useParams } from 'react-router-dom';
 import classes from './SideBar.module.scss';
 import MySubtitle from '../UI/subtitle/MySubtitle';
+import Loading from '../../pages/Loading';
 
 const SideBar = ({ brand, setBrand }) => {
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 
     if (isFetching) {
-        return <div>загрузка</div>
+        return <Loading />
     }
 
     if (data.length === 0) {

@@ -10,6 +10,7 @@ import MyTitle from '../../components/UI/title/MyTitle';
 import { toast } from 'react-toastify';
 
 import classes from './Auth.module.scss';
+import MyText from '../../components/UI/text/MyText';
 
 const Registration = () => {
     const dispatch = useDispatch();
@@ -50,7 +51,9 @@ const Registration = () => {
                 <MyInput placeholder='имя пользователя' value={login} onChange={e => setLogin(e.target.value)} />
                 <MyInput placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)} />
                 <MyButton onClick={registrationClick}>зарегестрироваться</MyButton>
-                <Link to={'/login'}>Уже есть аккаунт? Войдите</Link>
+                <Link to={'/login'}>
+                    <MyText>Уже есть аккаунт? Войдите</MyText>
+                </Link>
             </form>
         </div>
     )

@@ -9,6 +9,8 @@ import MyButton from '../../components/UI/button/MyButton';
 import { toast } from 'react-toastify';
 
 import classes from './Auth.module.scss';
+import MyText from '../../components/UI/text/MyText';
+import MyTitle from '../../components/UI/title/MyTitle';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -32,12 +34,14 @@ const Login = () => {
 
     return (
         <div className={classes.auth}>
-            <h1>Войти</h1>
+            <MyTitle>Войти</MyTitle>
             <form className={classes.form}>
                 <MyInput placeholder='имя пользователя' value={login} onChange={e => setLogin(e.target.value)} />
                 <MyInput placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)} />
                 <MyButton onClick={loginClick}>войти</MyButton>
-                <Link to={'/registration'}>Нет аккаунта? Создайте его</Link>
+                <Link to={'/registration'}>
+                    <MyText>Нет аккаунта? Создайте его</MyText>
+                </Link>
             </form>
         </div>
     )

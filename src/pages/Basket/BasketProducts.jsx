@@ -9,7 +9,6 @@ import trashSvg from '../../static/trash.svg';
 
 import classes from './styles/BasketProducts.module.scss'
 import MyText from '../../components/UI/text/MyText';
-import MySubtitle from '../../components/UI/subtitle/MySubtitle';
 import MyPrice from '../../components/UI/price/MyPrice';
 
 

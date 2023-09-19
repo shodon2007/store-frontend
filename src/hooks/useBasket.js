@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useSelector } from "react-redux"
 import { checkBasket, getBasket } from "../API/fetchBasket";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 export const useCheckBasket = (device_id) => {
     const user = useSelector(state => state.user);

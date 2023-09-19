@@ -1,8 +1,9 @@
 import React from 'react'
+import MyTitle from '../components/UI/title/MyTitle'
 
 const Loading = () => {
     return (
-        <div>Загрузка данных...</div>
+        <MyTitle>Загрузка данных...</MyTitle>
     )
 }
 

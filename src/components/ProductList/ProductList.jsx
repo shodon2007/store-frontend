@@ -1,19 +1,21 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+
 import { URL } from '../../consts/consts'
 import { useProducts } from '../../hooks/useProducts';
-import classes from './ProductList.module.scss';
 import Error404 from '../../pages/Error404';
-
 import MyText from '../UI/text/MyText';
 import MyPrice from '../UI/price/MyPrice';
+
+import classes from './ProductList.module.scss';
+import Loading from '../../pages/Loading';
 
 const ProductList = ({ brand }) => {
     const { type } = useParams();
     const { isFetching, data } = useProducts(brand, type);
 
     if (isFetching) {
-        return <div>Загрузка данных...</div>
+        return <Loading />
     }
 
     const notFound = data.length === 0 || !data;
