@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { checkBasket, getBasket } from "../API/fetchBasket";
 import { useMemo, useState } from "react";
 
-export const useCheckBasket = (device_id) => {
+export const useCheckBasket = (device_id: number) => {
     const user = useSelector(state => state.user);
     return useQuery(['checkBasket', device_id, user.user], () => checkBasket(user.user, device_id), {
         select: ({ data }) => data
