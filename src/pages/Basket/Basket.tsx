@@ -1,5 +1,4 @@
-import React, { memo, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { memo, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 
 import MyTitle from "../../components/UI/title/MyTitle";
@@ -11,9 +10,10 @@ import classes from "./styles/Basket.module.scss";
 import Loading from "../Loading";
 import { toast } from "react-toastify";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const Basket = memo(() => {
-    const user = useSelector((state) => state.user);
+    const user = useAppSelector((state) => state.user);
     const { isLoading, data } = useGetBasket();
     const totalPrice = useTotalPrice(data);
 

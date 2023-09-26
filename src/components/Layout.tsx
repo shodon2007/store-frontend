@@ -1,7 +1,6 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from './Header/Header'
-import { ToastContainer } from 'react-toastify'
+import { Outlet } from "react-router-dom";
+import Header from "./Header/Header";
+import { ToastContainer } from "react-toastify";
 
 const Layout = () => {
     return (
@@ -14,7 +13,7 @@ const Layout = () => {
             <Header />
             <Outlet />
         </>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;

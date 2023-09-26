@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { registration } from "../../API/fetchAuth";
-import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";
 import { Link, Navigate } from "react-router-dom";
 import { saveUserInLocalStorage } from "../../utils/saveInLocalStorage";
@@ -11,10 +10,11 @@ import { toast } from "react-toastify";
 
 import classes from "./Auth.module.scss";
 import MyText from "../../components/UI/text/MyText";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 
 const Registration = () => {
-    const dispatch = useDispatch();
-    const userState = useSelector((state) => state.user);
+    const dispatch = useAppDispatch();
+    const userState = useAppSelector((state) => state.user);
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 

@@ -1,9 +1,9 @@
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { URL } from "../consts/consts";
 import defaultAxios from "./axiosService";
 import { TypeAuthError, TypeAuthFunction, TypeAuthResponse, TypeAuthReturn } from "../types/auth";
 
-function errorCreator(message: string) {
+function errorCreator(message: string): string {
     return JSON.parse(message).message;
 }
 
@@ -24,7 +24,7 @@ function successHandler(data: TypeAuthResponse):TypeAuthReturn {
 }
 
 export const fetchLogin:TypeAuthFunction = async (login, password) => {
-    let errorMessage = '';
+    let errorMessage: string = '';
     const resp: AxiosResponse<TypeAuthResponse> = await defaultAxios
         .get(`/auth/login`, {
             params: {

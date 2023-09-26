@@ -1,13 +1,13 @@
-export function tryGetTokenInLocalStorage() {
+export function tryGetTokenInLocalStorage(): string {
     const token = localStorage.getItem('token');
-    return token;
+    return token ?? '';
 }
-export function tryGetUserInLocalStorage() {
+export function tryGetUserInLocalStorage(): string {
     const user = localStorage.getItem('user');
-    return user;
+    return user ?? '';
 }
 
-export function tryGetAuthInLocalStorage() {
-    const isAuth = localStorage.getItem('isAuth');
+export function tryGetAuthInLocalStorage(): boolean {
+    const isAuth = !!localStorage.getItem('isAuth');
     return isAuth;
 }

@@ -1,7 +1,5 @@
-import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 
 import MyTitle from "../../components/UI/title/MyTitle";
 import MyButton from "../../components/UI/button/MyButton";
@@ -14,9 +12,10 @@ import { addBasket, removeBasket } from "../../API/fetchBasket";
 
 import classes from "./Product.module.scss";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const Product = () => {
-    const user = useSelector((state) => state.user);
+    const user = useAppSelector((state) => state.user);
     const { type, id } = useParams();
     const { isFetching, data: product } = useProduct(type, id);
     const { data: addedToBasket, refetch: refetchBasket } = useCheckBasket(id);

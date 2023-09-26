@@ -1,10 +1,16 @@
-import React, { memo } from 'react'
-import classes from './MyTitle.module.scss'
+import { ReactNode, memo } from "react";
+import classes from "./MyTitle.module.scss";
 
-const MyTitle = memo(({ children, ...props }) => {
+type TypeTitle = {
+    children: ReactNode;
+};
+
+const MyTitle = memo(({ children, ...props }: TypeTitle) => {
     return (
-        <h1 {...props} className={classes.title}>{children}</h1>
-    )
-})
+        <h1 {...props} className={classes.title}>
+            {children}
+        </h1>
+    );
+});
 
-export default MyTitle
+export default MyTitle;

@@ -1,15 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { tryGetAuthInLocalStorage, tryGetTokenInLocalStorage, tryGetUserInLocalStorage } from "../utils/tryGetInLocalStorage";
+
+type TypeUser = {
+    isAuth: boolean;
+    token: string;
+    user: string;
+}
+
+type TypeLoginAction = {
+    user: string,
+    token: string,
+}
+
+const initialState: TypeUser = {
+    isAuth: tryGetAuthInLocalStorage(),
+    token: tryGetTokenInLocalStorage(),
+    user: tryGetUserInLocalStorage(),
+}
 
 const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        isAuth: tryGetAuthInLocalStorage() ?? false,
-        token: tryGetTokenInLocalStorage() ?? '',
-        user: tryGetUserInLocalStorage() ?? '',
-    },
+    initialState,
     reducers: {
-        loginUser(state, action) {
+        loginUser(state, action: PayloadAction<TypeLoginAction>) {
             state.isAuth = true;
             state.token = action.payload.token;
             state.user = action.payload.user;

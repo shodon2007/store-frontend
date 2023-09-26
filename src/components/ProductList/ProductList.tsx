@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { URL } from "../../consts/consts";
@@ -10,7 +9,7 @@ import MyPrice from "../UI/price/MyPrice";
 import classes from "./ProductList.module.scss";
 import Loading from "../../pages/Loading";
 
-const ProductList = ({ brand }) => {
+const ProductList = ({ brand }: { brand: string }) => {
     const { type } = useParams();
     const { isFetching, data } = useProducts(brand, type);
 
@@ -18,7 +17,7 @@ const ProductList = ({ brand }) => {
         return <Loading />;
     }
 
-    const notFound = data.length === 0 || !data;
+    const notFound = !data || data.length === 0;
 
     if (notFound) {
         return <Error404 />;

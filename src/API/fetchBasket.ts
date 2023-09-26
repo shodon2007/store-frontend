@@ -7,7 +7,7 @@ export const addBasket: TypeAddBasketFunction = async (user, device_id) => {
             user,
             device_id
         }
-    })
+    });
 } 
 
 export const getBasket: TypeGetBasketFunction = async (user) => {

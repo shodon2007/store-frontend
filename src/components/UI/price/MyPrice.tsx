@@ -1,12 +1,9 @@
-import React from 'react'
+import { ReactNode } from "react";
 
-import classes from './MyPrice.module.scss';
+import classes from "./MyPrice.module.scss";
 
-const MyPrice = ({ children }) => {
+const MyPrice = ({ children }: { children: ReactNode }) => {
+    return <div className={classes.price}>{children}</div>;
+};
 
-    return (
-        <div className={classes.price}>{children}</div>
-    )
-}
-
-export default MyPrice
+export default MyPrice;

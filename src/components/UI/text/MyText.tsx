@@ -1,11 +1,9 @@
-import React from 'react'
+import { ReactNode } from "react";
 
-import classes from './MyText.module.scss'
+import classes from "./MyText.module.scss";
 
-const MyText = ({ children }) => {
-    return (
-        <div className={classes.text}>{children}</div>
-    )
-}
+const MyText = ({ children }: { children: ReactNode }) => {
+    return <div className={classes.text}>{children}</div>;
+};
 
-export default MyText
+export default MyText;
