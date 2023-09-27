@@ -9,14 +9,18 @@ import trashSvg from "../../static/trash.svg";
 import classes from "./styles/BasketProducts.module.scss";
 import MyText from "../../components/UI/text/MyText";
 import MyPrice from "../../components/UI/price/MyPrice";
-import { useAppSelector } from "../../hooks/useRedux";
+import { useSelector } from "react-redux";
+import { IProduct } from "../../types/product";
 
-const BasketProducts = memo(({ data }) => {
-    console.log("render BasketProducts");
-    const user = useAppSelector((state) => state.user);
+type TypeBasket = {
+    data: IProduct[];
+};
+
+const BasketProducts = memo(({ data }: TypeBasket) => {
+    const user = useSelector((state) => state.user);
     const queryClient = useQueryClient();
 
-    async function trashClick(id) {
+    async function trashClick(id: number) {
         await removeBasket(user.user, id);
         queryClient.invalidateQueries(["getBasket", user.user]);
     }

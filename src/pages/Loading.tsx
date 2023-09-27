@@ -1,10 +1,7 @@
-import React from 'react'
-import MyTitle from '../components/UI/title/MyTitle'
+import MyTitle from "../components/UI/title/MyTitle";
 
 const Loading = () => {
-    return (
-        <MyTitle>Загрузка данных...</MyTitle>
-    )
-}
+    return <MyTitle>Загрузка данных...</MyTitle>;
+};
 
-export default Loading
+export default Loading;

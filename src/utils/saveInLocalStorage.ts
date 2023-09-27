@@ -1,5 +1,7 @@
-export function saveUserInLocalStorage(token, user) {
+
+
+export function saveUserInLocalStorage(token: string, user: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', user);
-    localStorage.setItem('isAuth', true);
+    localStorage.setItem('isAuth', 'true');
 }

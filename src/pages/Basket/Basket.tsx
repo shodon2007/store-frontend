@@ -10,16 +10,14 @@ import classes from "./styles/Basket.module.scss";
 import Loading from "../Loading";
 import { toast } from "react-toastify";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
-import { useAppSelector } from "../../hooks/useRedux";
+import { useSelector } from "react-redux";
 
 const Basket = memo(() => {
-    const user = useAppSelector((state) => state.user);
+    const user = useSelector((state) => state.user);
     const { isLoading, data } = useGetBasket();
-    const totalPrice = useTotalPrice(data);
-
     const memoizedData = useMemo(() => data, [data]);
     const isAuth = useMemo(() => user.isAuth, []);
-
+    const totalPrice = useTotalPrice(data);
     if (!isAuth) {
         toast.error("Бро, тебе сначало надо зарегестрироваться");
         return <Navigate replace to={"/"} />;
@@ -29,7 +27,7 @@ const Basket = memo(() => {
         return <Loading />;
     }
 
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
         return <MyTitle>Корзина пуста, купи что нибудь</MyTitle>;
     }
 

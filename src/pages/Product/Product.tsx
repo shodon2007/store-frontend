@@ -12,16 +12,27 @@ import { addBasket, removeBasket } from "../../API/fetchBasket";
 
 import classes from "./Product.module.scss";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
-import { useAppSelector } from "../../hooks/useRedux";
+import { useSelector } from "react-redux";
+import { memo } from "react";
+import Error404 from "../Error404";
 
-const Product = () => {
-    const user = useAppSelector((state) => state.user);
-    const { type, id } = useParams();
+const Product = memo(() => {
+    const user = useSelector((state) => state.user);
+    const { type, id: stringId } = useParams();
+
+    if (!type || !stringId) {
+        return <Error404 />;
+    }
+    const id = +stringId;
     const { isFetching, data: product } = useProduct(type, id);
     const { data: addedToBasket, refetch: refetchBasket } = useCheckBasket(id);
 
     if (isFetching) {
         return <Loading />;
+    }
+
+    if (!product) {
+        return <Error404 />;
     }
 
     function userIsNotAuth() {
@@ -71,6 +82,6 @@ const Product = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Product;

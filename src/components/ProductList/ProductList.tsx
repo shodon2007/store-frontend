@@ -8,9 +8,18 @@ import MyPrice from "../UI/price/MyPrice";
 
 import classes from "./ProductList.module.scss";
 import Loading from "../../pages/Loading";
+import { FC } from "react";
 
-const ProductList = ({ brand }: { brand: string }) => {
+type TypeList = {
+    brand: string;
+};
+
+const ProductList: FC<TypeList> = ({ brand }) => {
     const { type } = useParams();
+    if (!type) {
+        return <Error404 />;
+    }
+
     const { isFetching, data } = useProducts(brand, type);
 
     if (isFetching) {

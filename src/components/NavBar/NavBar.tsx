@@ -7,11 +7,12 @@ import basketSvg from "../../static/basket.svg";
 import userSvg from "../../static/user.svg";
 
 import classes from "./NavBar.module.scss";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const NavBar = () => {
-    const user = useAppSelector((state) => state.user);
-    const dispatch = useAppDispatch();
+const NavBar: FC = () => {
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     function exitClick() {
         dispatch(exitUser());

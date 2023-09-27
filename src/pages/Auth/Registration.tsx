@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { registration } from "../../API/fetchAuth";
 import { loginUser } from "../../store/userSlice";
 import { Link, Navigate } from "react-router-dom";
@@ -10,15 +10,16 @@ import { toast } from "react-toastify";
 
 import classes from "./Auth.module.scss";
 import MyText from "../../components/UI/text/MyText";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { TypeAuthReturn } from "../../types/auth";
 
 const Registration = () => {
-    const dispatch = useAppDispatch();
-    const userState = useAppSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const userState = useSelector((state) => state.user);
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
-    async function registrationClick(e: any) {
+    async function registrationClick(e: MouseEvent) {
         e.preventDefault();
         const resp = await registration(login, password);
 
@@ -29,7 +30,7 @@ const Registration = () => {
         successLogin(resp);
     }
 
-    function successLogin(resp) {
+    function successLogin(resp: TypeAuthReturn) {
         dispatch(loginUser({ token: resp.token, user: resp.user }));
         toast.success(resp.message);
         saveUserInLocalStorage(resp.token, resp.user);
@@ -46,12 +47,16 @@ const Registration = () => {
                 <MyInput
                     placeholder="имя пользователя"
                     value={login}
-                    onChange={(e) => setLogin(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setLogin(e.target.value)
+                    }
                 />
                 <MyInput
                     placeholder="пароль"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPassword(e.target.value)
+                    }
                 />
                 <MyButton onClick={registrationClick}>
                     зарегестрироваться

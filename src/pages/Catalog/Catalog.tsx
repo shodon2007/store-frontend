@@ -16,7 +16,7 @@ const Catalog: FC = () => {
         return <Loading />;
     }
 
-    if (error) {
+    if (error || !catalog) {
         return <Error404 />;
     }
 

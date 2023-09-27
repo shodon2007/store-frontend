@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, MouseEventHandler, useState } from "react";
 import { fetchLogin } from "../../API/fetchAuth";
 import { loginUser } from "../../store/userSlice";
 import { Link, Navigate } from "react-router-dom";
@@ -10,15 +10,19 @@ import { toast } from "react-toastify";
 import classes from "./Auth.module.scss";
 import MyText from "../../components/UI/text/MyText";
 import MyTitle from "../../components/UI/title/MyTitle";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-    const dispatch = useAppDispatch();
-    const userState = useAppSelector((state) => state.user);
-    const [login, setLogin] = useState("");
-    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const userState = useSelector((state) => state.user);
+    const [login, setLogin] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    async function loginClick(e) {
+    if (userState.isAuth) {
+        return <Navigate replace to={"/"} />;
+    }
+
+    async function loginClick(e: React.MouseEvent) {
         e.preventDefault();
         const resp = await fetchLogin(login, password);
         if (resp.status === "error") {
@@ -28,9 +32,6 @@ const Login = () => {
         toast.success(resp.message);
         saveUserInLocalStorage(resp.token, resp.user);
     }
-    if (userState.isAuth) {
-        return <Navigate replace to={"/"} />;
-    }
 
     return (
         <div className={classes.auth}>
@@ -39,12 +40,16 @@ const Login = () => {
                 <MyInput
                     placeholder="имя пользователя"
                     value={login}
-                    onChange={(e) => setLogin(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setLogin(e.target.value)
+                    }
                 />
                 <MyInput
                     placeholder="пароль"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPassword(e.target.value)
+                    }
                 />
                 <MyButton onClick={loginClick}>войти</MyButton>
                 <Link to={"/registration"}>
