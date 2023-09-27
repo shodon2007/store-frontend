@@ -3,16 +3,15 @@
 .button {
     font-size: 16px;
     cursor: pointer;
-    padding: 10px 30px;
+    padding: 10px 20px;
     background-color: $color;
-    border-radius: 10px;
     max-width: max-content;
     border: 0;
 }
 
 @media (max-width: 1200px) {
     .button {
-        padding: 10px 20px;
+        padding: 5px 10px;
         font-size: 14px;
     }
 }

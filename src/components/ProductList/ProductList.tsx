@@ -1,60 +1,58 @@
-import { Link, useParams } from "react-router-dom";
-
-import { URL } from "../../consts/consts";
-import { useProducts } from "../../hooks/useProducts";
-import Error404 from "../../pages/Error404";
+import classes from "./ProductList.module.scss";
+import { FC, memo } from "react";
+import { IProduct } from "../../types/product";
+import { Link } from "react-router-dom";
 import MyText from "../UI/text/MyText";
 import MyPrice from "../UI/price/MyPrice";
-
-import classes from "./ProductList.module.scss";
-import Loading from "../../pages/Loading";
-import { FC } from "react";
+import { ICatalog } from "../../types/catalog";
+import { URL } from "../../consts/consts";
 
 type TypeList = {
-    brand: string;
+    itemList: IProduct[] | ICatalog[];
 };
 
-const ProductList: FC<TypeList> = ({ brand }) => {
-    const { type } = useParams();
-    if (!type) {
-        return <Error404 />;
-    }
+const ProductItem = (item: IProduct) => {
+    return (
+        <Link key={item.name} className={classes.item} to={`${item.id}`}>
+            <img
+                className={classes.img}
+                src={`${URL}/${item.img}`}
+                alt="product-img"
+            />
+            <div className={classes.bottom}>
+                <MyText>{item.name}</MyText>
+                <MyPrice>{item.price} рублей</MyPrice>
+            </div>
+        </Link>
+    );
+};
 
-    const { isFetching, data } = useProducts(brand, type);
+const CatalogItem = (item: ICatalog) => {
+    return (
+        <Link key={item.name} className={classes.item} to={`${item.name}`}>
+            <img
+                className={classes.img}
+                src={`${URL}/${item.img}`}
+                alt="product-img"
+            />
+            <div className={classes.bottom}>
+                <MyText>{item.name_ru}</MyText>
+            </div>
+        </Link>
+    );
+};
 
-    if (isFetching) {
-        return <Loading />;
-    }
-
-    const notFound = !data || data.length === 0;
-
-    if (notFound) {
-        return <Error404 />;
-    }
-
+const ProductList: FC<TypeList> = memo(({ itemList }: TypeList) => {
     return (
         <div className={classes.list}>
-            {data.map((product) => {
-                return (
-                    <Link
-                        key={product.name}
-                        className={classes.product}
-                        to={`${product.id}`}
-                    >
-                        <img
-                            className={classes.img}
-                            src={`${URL}/${product.img}`}
-                            alt="product-img"
-                        />
-                        <div className={classes.bottom}>
-                            <MyText>{product.name}</MyText>
-                            <MyPrice>{product.price} рублей</MyPrice>
-                        </div>
-                    </Link>
-                );
+            {itemList.map((item) => {
+                if (item.price) {
+                    return ProductItem(item);
+                }
+                return CatalogItem(item);
             })}
         </div>
     );
-};
+});
 
 export default ProductList;
