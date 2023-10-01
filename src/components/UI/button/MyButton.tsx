@@ -1,7 +1,12 @@
-import { ReactNode, memo } from "react";
+import { FC, ReactNode, memo } from "react";
 import classes from "./MyButton.module.scss";
 
-const MyButton = memo(({ children, ...props }: { children: ReactNode }) => {
+type MyButtonProps = {
+    children: ReactNode;
+    onClick?: (e: any) => any;
+};
+
+const MyButton: FC<MyButtonProps> = memo(({ children, ...props }) => {
     return (
         <button {...props} className={classes.button}>
             {children}

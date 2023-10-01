@@ -1,21 +1,19 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { registration } from "../../API/fetchAuth";
-import { loginUser } from "../../store/userSlice";
 import { Link, Navigate } from "react-router-dom";
-import { saveUserInLocalStorage } from "../../utils/saveInLocalStorage";
 import MyInput from "../../components/UI/input/MyInput";
 import MyButton from "../../components/UI/button/MyButton";
 import MyTitle from "../../components/UI/title/MyTitle";
-import { toast } from "react-toastify";
 
 import classes from "./Auth.module.scss";
 import MyText from "../../components/UI/text/MyText";
 import { useDispatch, useSelector } from "react-redux";
-import { TypeAuthReturn } from "../../types/auth";
+import { RootState } from "../../store";
+import { authAction } from "./general";
 
 const Registration = () => {
     const dispatch = useDispatch();
-    const userState = useSelector((state) => state.user);
+    const userState = useSelector((state: RootState) => state.user);
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
@@ -23,17 +21,7 @@ const Registration = () => {
         e.preventDefault();
         const resp = await registration(login, password);
 
-        if (resp.status === "error") {
-            return toast.error(resp.message);
-        }
-
-        successLogin(resp);
-    }
-
-    function successLogin(resp: TypeAuthReturn) {
-        dispatch(loginUser({ token: resp.token, user: resp.user }));
-        toast.success(resp.message);
-        saveUserInLocalStorage(resp.token, resp.user);
+        authAction(resp, dispatch);
     }
 
     if (userState.isAuth) {

@@ -15,9 +15,10 @@ import MySubtitle from "../../components/UI/subtitle/MySubtitle";
 import { useSelector } from "react-redux";
 import { memo } from "react";
 import Error404 from "../Error404";
+import { RootState } from "../../store";
 
 const Product = memo(() => {
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state: RootState) => state.user);
     const { type, id: stringId } = useParams();
 
     if (!type || !stringId) {
@@ -71,7 +72,11 @@ const Product = memo(() => {
             <div className={classes.body}>
                 <div className={classes.top}>
                     <MyTitle>{product.name}</MyTitle>
-                    <Attributes attributes={product.attributes} />
+                    {"attributes" in product ? (
+                        <Attributes attributes={product.attributes} />
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className={classes.bottom}>
                     <MySubtitle>{product.price} рублей</MySubtitle>

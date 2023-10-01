@@ -5,7 +5,7 @@ import classes from "./Attributes.module.scss";
 import { IAttributes } from "../../types/product";
 
 type TypeAttributes = {
-    attributes: IAttributes[];
+    attributes: IAttributes[] | undefined;
 };
 
 const Attributes = memo(({ attributes }: TypeAttributes) => {
@@ -13,16 +13,20 @@ const Attributes = memo(({ attributes }: TypeAttributes) => {
         <div className={classes.attributes}>
             <MySubtitle>характеристики</MySubtitle>
             <table className={classes.table}>
-                {attributes.map((attribute) => {
-                    return (
-                        <tr className={classes.tr}>
-                            <td className={classes.td}>{attribute.title}</td>
-                            <td className={classes.td}>
-                                {attribute.description}
-                            </td>
-                        </tr>
-                    );
-                })}
+                {attributes
+                    ? attributes.map((attribute) => {
+                          return (
+                              <tr className={classes.tr}>
+                                  <td className={classes.td}>
+                                      {attribute.title}
+                                  </td>
+                                  <td className={classes.td}>
+                                      {attribute.description}
+                                  </td>
+                              </tr>
+                          );
+                      })
+                    : ""}
             </table>
         </div>
     );

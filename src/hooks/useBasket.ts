@@ -3,16 +3,17 @@ import { checkBasket, getBasket } from "../API/fetchBasket";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProduct } from "../types/product";
+import { RootState } from "../store";
 
 export const useCheckBasket = (device_id: number) => {
-    const user = useSelector(state => state.user);
+    const user = useSelector((state: RootState) => state.user);
     return useQuery(['checkBasket', device_id, user.user], () => checkBasket(user.user, device_id), {
         select: ({ data }) => data
     });
 }
 
 export const useGetBasket = () => {
-    const user = useSelector(state => state.user);
+    const user = useSelector((state: RootState) => state.user);
     return useQuery(['getBasket', user.user], () => getBasket(user.user), {
         select: ({ data }) => data
     });

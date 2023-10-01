@@ -1,16 +1,17 @@
-import { FC, SetStateAction } from "react";
+import { FC } from "react";
 import { useFilter } from "../../hooks/useFilter";
 import { useParams } from "react-router-dom";
 import classes from "./SideBar.module.scss";
 import MySubtitle from "../UI/subtitle/MySubtitle";
 import Loading from "../../pages/Loading";
 
-type typeBrand = {
+type TypeSide = {
     brand: string;
-    setBrand: SetStateAction<string>;
+    setBrand: (brand: string) => void;
 };
 
-const SideBar: FC<typeBrand> = ({ brand, setBrand }) => {
+const SideBar: FC<TypeSide> = ({ brand, setBrand }) => {
+    console.log("обновляется наш sidebar");
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 

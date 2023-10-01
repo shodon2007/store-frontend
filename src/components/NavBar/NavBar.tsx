@@ -9,9 +9,10 @@ import userSvg from "../../static/user.svg";
 import classes from "./NavBar.module.scss";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const NavBar: FC = () => {
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
 
     function exitClick() {

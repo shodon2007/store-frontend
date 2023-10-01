@@ -13,7 +13,7 @@ type TypeList = {
 
 const ProductItem = (item: IProduct) => {
     return (
-        <Link key={item.name} className={classes.item} to={`${item.id}`}>
+        <Link key={item.id} className={classes.item} to={`${item.id}`}>
             <img
                 className={classes.img}
                 src={`${URL}/${item.img}`}
@@ -29,7 +29,7 @@ const ProductItem = (item: IProduct) => {
 
 const CatalogItem = (item: ICatalog) => {
     return (
-        <Link key={item.name} className={classes.item} to={`${item.name}`}>
+        <Link key={item.id} className={classes.item} to={`${item.name}`}>
             <img
                 className={classes.img}
                 src={`${URL}/${item.img}`}
@@ -42,14 +42,13 @@ const CatalogItem = (item: ICatalog) => {
     );
 };
 
-const ProductList: FC<TypeList> = memo(({ itemList }: TypeList) => {
+const ProductList: FC<TypeList> = memo(({ itemList }) => {
     return (
         <div className={classes.list}>
             {itemList.map((item) => {
-                if (item.price) {
-                    return ProductItem(item);
-                }
-                return CatalogItem(item);
+                return "price" in item
+                    ? ProductItem(item as IProduct)
+                    : CatalogItem(item as ICatalog);
             })}
         </div>
     );

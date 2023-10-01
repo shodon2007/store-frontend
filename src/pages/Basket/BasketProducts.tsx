@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -11,13 +11,14 @@ import MyText from "../../components/UI/text/MyText";
 import MyPrice from "../../components/UI/price/MyPrice";
 import { useSelector } from "react-redux";
 import { IProduct } from "../../types/product";
+import { RootState } from "../../store";
 
 type TypeBasket = {
     data: IProduct[];
 };
 
 const BasketProducts = memo(({ data }: TypeBasket) => {
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state: RootState) => state.user);
     const queryClient = useQueryClient();
 
     async function trashClick(id: number) {

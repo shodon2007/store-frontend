@@ -11,11 +11,11 @@ import Loading from "../Loading";
 import { toast } from "react-toastify";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
 import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Basket = memo(() => {
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state: RootState) => state.user);
     const { isLoading, data } = useGetBasket();
-    const memoizedData = useMemo(() => data, [data]);
     const isAuth = useMemo(() => user.isAuth, []);
     const totalPrice = useTotalPrice(data);
     if (!isAuth) {
@@ -40,7 +40,8 @@ const Basket = memo(() => {
     return (
         <div className={classes.main}>
             <MyTitle>Корзина</MyTitle>
-            <BasketProducts data={memoizedData} />
+            <BasketProducts data={data} />
+
             <div className={classes.bottom}>
                 <MySubtitle>Итого: {totalPrice} рублей</MySubtitle>
                 <MyButton onClick={cringeClick}>Купить</MyButton>
