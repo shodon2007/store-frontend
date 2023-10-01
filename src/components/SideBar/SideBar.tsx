@@ -10,7 +10,7 @@ type TypeSide = {
     setBrand: (brand: string) => void;
 };
 
-const SideBar: FC<TypeSide> = ({ brand, setBrand }) => {
+const SideBar: FC<TypeSide> = () => {
     console.log("обновляется наш sidebar");
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
@@ -23,32 +23,12 @@ const SideBar: FC<TypeSide> = ({ brand, setBrand }) => {
         return <div></div>;
     }
 
+    console.log(data);
+
     return (
         <div className={classes.sidebar}>
             <MySubtitle>Производители</MySubtitle>
-            <div className={classes.list}>
-                <button
-                    onClick={() => setBrand("all")}
-                    className={`${classes.button} ${
-                        brand === "all" ? classes.active : ""
-                    }`}
-                >
-                    Все
-                </button>
-                {data.map((brandItem) => {
-                    return (
-                        <button
-                            key={brandItem.name}
-                            onClick={() => setBrand(brandItem.name)}
-                            className={`${classes.button} ${
-                                brandItem.name === brand ? classes.active : ""
-                            }`}
-                        >
-                            {brandItem.name}
-                        </button>
-                    );
-                })}
-            </div>
+            <div className={classes.list}></div>
         </div>
     );
 };

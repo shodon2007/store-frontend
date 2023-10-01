@@ -12,5 +12,5 @@ export const getProduct: TypeGetProduct = async (type, id) => {
 }
 
 export const getFilter: TypeGetFilter = async (type) => {
-    return await defaultAxios.get(`/brands/${type}`);
+    return await defaultAxios.get(`/side/${type}`);
 }

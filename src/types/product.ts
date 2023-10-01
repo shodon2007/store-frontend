@@ -30,4 +30,4 @@ export type TypeGetProducts = (
 
 export type TypeGetFilter = (
     type: string
-) => Promise<AxiosResponse<IProduct[]>>;
+) => Promise<AxiosResponse<IAttributes[]>>;
