@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { TypeForm } from "./side";
 
 export interface IAttributes {
     description: string;
@@ -25,7 +26,8 @@ export type TypeGetProduct = (
 
 export type TypeGetProducts = (
     type: string,
-    brand: string
+    brand: string,
+    form: TypeForm
 ) => Promise<AxiosResponse<IProduct[]>>;
 
 export type TypeGetFilter = (

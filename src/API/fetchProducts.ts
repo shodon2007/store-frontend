@@ -1,9 +1,12 @@
 import { TypeGetFilter, TypeGetProduct, TypeGetProducts } from "../types/product";
 import defaultAxios from "./axiosService";
 
-export const getProducts: TypeGetProducts = async (type, brand) => {
+export const getProducts: TypeGetProducts = async (type, brand, form) => {
     return await defaultAxios.get(`/products/${type}`, {
-        params: { brand }
+        params: {
+            brand,
+            form
+        }
     });
 }
 
