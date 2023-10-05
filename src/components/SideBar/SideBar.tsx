@@ -15,13 +15,10 @@ interface ISide {
 }
 
 const SideBar: FC<ISide> = ({ form, setForm, refetch }) => {
-    console.log("рендер", form);
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 
-    useEffect(() => {
-        console.log("ЕББАБААААТЬ РАБОТЕТ");
-    }, [form]);
+    useEffect(() => {}, [form]);
 
     if (isFetching) {
         return <Loading />;

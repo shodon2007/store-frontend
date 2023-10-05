@@ -15,7 +15,10 @@ function createFilterObject(data: IAttributes[]): TypeSide[] {
                 ]
             });
         } else {
-            res[findAttribute].descriptions?.push(item.description);
+            const findItem = res[findAttribute].descriptions.findIndex(el => el === item.description);
+            if (findItem === -1) {
+                res[findAttribute].descriptions?.push(item.description);
+            }
         }
     })
 
