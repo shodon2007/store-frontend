@@ -4,9 +4,8 @@ import { IProduct } from "../types/product";
 import { TypeForm } from "../types/side";
 
 
-export const useProducts = (brand: string, type: string, form: TypeForm): UseQueryResult<IProduct[]> => {
-    console.log(form);
-    return useQuery(['products', type, brand], () => getProducts(type, brand, form), {
+export const useProducts = (type: string, form: TypeForm): UseQueryResult<IProduct[]> => {
+    return useQuery(['products', type, form.brand], () => getProducts(type, form), {
         select: ({ data }) => data,
     });
 }

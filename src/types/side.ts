@@ -3,6 +3,18 @@ export type TypeSide = {
     descriptions: string[]
 }
 
-export type TypeForm = {
+export type TypeFilter = {
     [key: string]: string[],
+}
+
+export type TypePrice = {
+    min: number,
+    max: number,
+}
+
+export type TypeForm = {
+    filter: TypeFilter;
+    sort: string,
+    price: TypePrice,
+    brand: string,
 }

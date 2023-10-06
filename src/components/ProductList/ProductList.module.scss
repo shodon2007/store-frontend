@@ -18,11 +18,13 @@
     color: black;
     text-decoration: none;
     text-align: center;
+    height: min-content;
+    transition: all 0.3s;
 }
 
 .img {
     max-height: 150px;
-    max-width: fit-content;
+    max-width: 200px;
     margin: 0 auto;
 }
 
@@ -33,7 +35,7 @@
     flex: 1 1 auto;
 }
 
-.product:hover div *{
+.item:hover div *{
     transition: all 0.3s;
     color: $bgAll;
 }
@@ -58,5 +60,9 @@
 @media (max-width: 500px) {
     .list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .img {
+        max-width: 150px;
     }
 }

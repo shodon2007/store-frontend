@@ -26,7 +26,6 @@ export type TypeGetProduct = (
 
 export type TypeGetProducts = (
     type: string,
-    brand: string,
     form: TypeForm
 ) => Promise<AxiosResponse<IProduct[]>>;
 
