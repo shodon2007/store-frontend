@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useState } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import ProductList from "../../components/ProductList/ProductList";
 import classes from "./Products.module.scss";
@@ -16,7 +16,7 @@ const Products: FC = memo(() => {
             min: 0,
             max: 0,
         },
-        sort: "name",
+        sort: "none",
     });
 
     if (!type) {
@@ -24,7 +24,7 @@ const Products: FC = memo(() => {
     }
     const { data, refetch } = useProducts(type, form);
 
-    const notFound = !data || data.length === 0;
+    const notFound = !data;
 
     if (notFound) {
         return <Error404 />;

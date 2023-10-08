@@ -6,6 +6,7 @@ import MyText from "../UI/text/MyText";
 import MyPrice from "../UI/price/MyPrice";
 import { ICatalog } from "../../types/catalog";
 import { URL } from "../../consts/consts";
+import MyTitle from "../UI/title/MyTitle";
 
 type TypeList = {
     itemList: IProduct[] | ICatalog[];
@@ -43,6 +44,10 @@ const CatalogItem = (item: ICatalog) => {
 };
 
 const ProductList: FC<TypeList> = memo(({ itemList }) => {
+    if (itemList.length === 0) {
+        return <MyTitle>Ничего не найдено((</MyTitle>;
+    }
+
     return (
         <div className={classes.list}>
             {itemList.map((item) => {

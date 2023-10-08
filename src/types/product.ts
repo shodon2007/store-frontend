@@ -19,6 +19,11 @@ export interface IProduct {
     attributes?: IAttributes[];
 }
 
+export interface IBrand {
+    name: string;
+    id: number;
+}
+
 export type TypeGetProduct = (
     type: string,
     id: number
@@ -29,6 +34,6 @@ export type TypeGetProducts = (
     form: TypeForm
 ) => Promise<AxiosResponse<IProduct[]>>;
 
-export type TypeGetFilter = (
-    type: string
-) => Promise<AxiosResponse<IAttributes[]>>;
+export type TypeGetFilter = (type: string) => Promise<AxiosResponse<IAttributes[]>>;
+
+export type TypeGetBrand = (type: string) => Promise<AxiosResponse<IBrand[]>>

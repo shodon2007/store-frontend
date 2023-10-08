@@ -1,17 +1,19 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useFilter } from "../../hooks/useFilter";
 import { useParams } from "react-router-dom";
 import classes from "./SideBar.module.scss";
 import Loading from "../../pages/Loading";
 import MyButton from "../UI/button/MyButton";
 import Filter from "./components/Filter";
+import Sort from "./components/Sort";
+import Brand from "./components/Brand";
 
 interface ISide {
     setForm: any;
     refetch: any;
 }
 
-const SideBar: FC<ISide> = ({ setForm, refetch }) => {
+const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 
@@ -26,12 +28,14 @@ const SideBar: FC<ISide> = ({ setForm, refetch }) => {
     return (
         <div className={classes.sidebar}>
             <div className={classes.list}>
+                <Sort setForm={setForm} />
                 <Filter data={data} setForm={setForm} />
+                <Brand setForm={setForm} />
 
                 <MyButton onClick={() => refetch()}>Применить</MyButton>
             </div>
         </div>
     );
-};
+});
 
 export default SideBar;

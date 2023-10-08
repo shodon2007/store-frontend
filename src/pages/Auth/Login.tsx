@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, memo, useCallback, useMemo, useState } from "react";
 import { fetchLogin } from "../../API/fetchAuth";
 import { Link, Navigate } from "react-router-dom";
 import MyInput from "../../components/UI/input/MyInput";
@@ -11,21 +11,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { authAction } from "./general";
 
-const Login = () => {
+const Login = memo(() => {
     const dispatch = useDispatch();
     const userState = useSelector((state: RootState) => state.user);
     const [login, setLogin] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    if (userState.isAuth) {
-        return <Navigate replace to={"/"} />;
-    }
+    const loginChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setLogin(e.target.value);
+    };
 
-    async function loginClick(e: React.MouseEvent) {
+    const passwordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    };
+
+    const loginClick = async (e: React.MouseEvent) => {
         e.preventDefault();
         const resp = await fetchLogin(login, password);
-
         authAction(resp, dispatch);
+    };
+
+    if (userState.isAuth) {
+        return <Navigate replace to={"/"} />;
     }
 
     return (
@@ -35,16 +42,12 @@ const Login = () => {
                 <MyInput
                     placeholder="имя пользователя"
                     value={login}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setLogin(e.target.value)
-                    }
+                    onChange={loginChange}
                 />
                 <MyInput
                     placeholder="пароль"
                     value={password}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setPassword(e.target.value)
-                    }
+                    onChange={passwordChange}
                 />
                 <MyButton onClick={loginClick}>войти</MyButton>
                 <Link to={"/registration"}>
@@ -53,6 +56,6 @@ const Login = () => {
             </form>
         </div>
     );
-};
+});
 
 export default Login;
