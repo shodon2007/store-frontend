@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import Select, { Options, SingleValue } from "react-select";
+import Select, { SingleValue } from "react-select";
 import MySubtitle from "../../UI/subtitle/MySubtitle";
 import { TypeForm } from "../../../types/side";
 import { TypeOption } from "../../../types/select";
@@ -29,6 +29,7 @@ const Sort: FC<TypeSort> = memo(({ setForm }) => {
             <MySubtitle>Сортировка</MySubtitle>
             <Select
                 options={options}
+                placeholder={"Сортировка"}
                 onChange={(newValue: SingleValue<TypeOption>) => {
                     if (newValue === null) {
                         return;
@@ -39,6 +40,7 @@ const Sort: FC<TypeSort> = memo(({ setForm }) => {
                         return copyPrew;
                     });
                 }}
+                isSearchable={false}
             />
         </div>
     );

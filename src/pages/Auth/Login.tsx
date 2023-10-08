@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, memo, useState } from "react";
 import { fetchLogin } from "../../API/fetchAuth";
 import { Link, Navigate } from "react-router-dom";
 import MyInput from "../../components/UI/input/MyInput";

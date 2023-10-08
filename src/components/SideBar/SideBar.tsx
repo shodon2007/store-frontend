@@ -14,6 +14,7 @@ interface ISide {
 }
 
 const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
+    console.log(setForm);
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 
@@ -29,8 +30,8 @@ const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
         <div className={classes.sidebar}>
             <div className={classes.list}>
                 <Sort setForm={setForm} />
-                <Filter data={data} setForm={setForm} />
                 <Brand setForm={setForm} />
+                <Filter data={data} setForm={setForm} />
 
                 <MyButton onClick={() => refetch()}>Применить</MyButton>
             </div>

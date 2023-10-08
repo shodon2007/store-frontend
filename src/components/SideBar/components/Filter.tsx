@@ -1,35 +1,19 @@
-import { FC } from "react";
-import Checkbox from "./Checkbox";
+import { FC, memo } from "react";
 import MySubtitle from "../../UI/subtitle/MySubtitle";
 import { TypeForm, TypeSide } from "../../../types/side";
+import Select from "react-select";
 
 type TypeFilter = {
     data: TypeSide[];
     setForm: any;
 };
 
-const Filter: FC<TypeFilter> = ({ data, setForm }) => {
-    function changeFilter(
-        attribute: string,
-        title: string,
-        checked: boolean
-    ): void {
-        setForm((prevForm: TypeForm) => {
-            const updatedForm = { ...prevForm };
-
-            if (!(title in updatedForm.filter)) {
-                updatedForm.filter[title] = [];
-            }
-
-            if (checked) {
-                updatedForm.filter[title].push(attribute);
-            } else {
-                updatedForm.filter[title] = updatedForm.filter[title].filter(
-                    (item) => item !== attribute
-                );
-            }
-
-            return updatedForm;
+const Filter: FC<TypeFilter> = memo(({ data, setForm }) => {
+    function changeFilter(filterList: string[], title: string): void {
+        setForm((prew: TypeForm) => {
+            const copyPrew = { ...prew };
+            copyPrew.filter[title] = filterList;
+            return prew;
         });
     }
 
@@ -37,22 +21,31 @@ const Filter: FC<TypeFilter> = ({ data, setForm }) => {
         if (!item.title || !item || !item.descriptions) {
             return "";
         }
+
+        const options = item.descriptions.map((item) => {
+            return {
+                value: item,
+                label: item,
+            };
+        });
         return (
             <div key={item.title}>
                 <MySubtitle>{item.title}</MySubtitle>
-                {item.descriptions.map((el, index) => {
-                    return (
-                        <Checkbox
-                            changeFilter={changeFilter}
-                            el={el}
-                            key={index}
-                            title={item.title}
-                        />
-                    );
-                })}
+                <Select
+                    options={options}
+                    isSearchable={false}
+                    isMulti={true}
+                    placeholder={item.title}
+                    onChange={(value) =>
+                        changeFilter(
+                            value.map((item) => item.value),
+                            item.title
+                        )
+                    }
+                />
             </div>
         );
     });
-};
+});
 
 export default Filter;

@@ -1,11 +1,11 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query"
-import { getBrand, getProduct, getProducts } from "../API/fetchProducts"
-import { IBrand, IProduct } from "../types/product";
+import { getBrands, getProduct, getProducts } from "../API/fetchProducts"
+import { IProduct } from "../types/product";
 import { TypeForm } from "../types/side";
 
 
 export const useProducts = (type: string, form: TypeForm): UseQueryResult<IProduct[]> => {
-    return useQuery(['products', type, form.brand], () => getProducts(type, form), {
+    return useQuery(['products', type], () => getProducts(type, form), {
         select: ({ data }) => data,
     });
 }
@@ -16,8 +16,8 @@ export const useProduct = (type: string, id: number): UseQueryResult<IProduct> =
     });
 }
 
-export const useBrand = (type: string): UseQueryResult<IBrand[]> => {
-    return useQuery(['brands', type], () => getBrand(type), {
+export const useBrand = (type: string): UseQueryResult<string[]> => {
+    return useQuery(['brands', type], () => getBrands(type), {
         select: ({ data }) => data,
     });
 }

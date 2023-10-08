@@ -16,5 +16,5 @@ export type TypeForm = {
     filter: TypeFilter;
     sort: string,
     price: TypePrice,
-    brand: string,
+    brands: string[],
 }

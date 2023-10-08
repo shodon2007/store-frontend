@@ -9,12 +9,13 @@ import { TypeForm } from "../../types/side";
 
 const Products: FC = memo(() => {
     const { type } = useParams();
+
     const [form, setForm] = useState<TypeForm>({
-        brand: "all",
+        brands: ["all"],
         filter: {},
         price: {
             min: 0,
-            max: 0,
+            max: 1000000,
         },
         sort: "none",
     });
