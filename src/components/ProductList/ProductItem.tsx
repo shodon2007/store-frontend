@@ -12,6 +12,7 @@ import MyPrice from "../UI/price/MyPrice";
 import { URL } from "../../consts/consts";
 
 const ProductItem: FC<Props> = memo(({ item }) => {
+    console.log(item);
     return (
         <Link key={item.id} className={classes.item} to={`${item.id}`}>
             <img
@@ -19,10 +20,8 @@ const ProductItem: FC<Props> = memo(({ item }) => {
                 src={`${URL}/${item.img}`}
                 alt="product-img"
             />
-            <div className={classes.bottom}>
-                <MyText>{item.name}</MyText>
-                <MyPrice>{item.price} рублей</MyPrice>
-            </div>
+            <MyText>{`${item.name}`}</MyText>
+            <MyPrice>{item.price} ₽</MyPrice>
         </Link>
     );
 });

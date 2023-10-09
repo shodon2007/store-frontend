@@ -16,6 +16,7 @@ export interface IProduct {
     type_id: number;
     img: string;
     type: string;
+    brand: string;
     attributes?: IAttributes[];
 }
 

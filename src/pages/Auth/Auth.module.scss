@@ -1,8 +1,12 @@
 .auth {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
     position: absolute;
-    left: 0;
+    height: max-content;
     right: 0;
-    top: 0;
+    left: 0;
+    top: 30%;
     bottom: 0;
     flex: 1 1 auto;
     display: flex;
@@ -22,4 +26,11 @@
     gap: 10px;
     width: 100%;
     align-items: center;
+}
+
+@media (max-width: 500px) {
+    .auth {
+        margin: 0 10px;
+        padding: 10px 20px;
+    }
 }
