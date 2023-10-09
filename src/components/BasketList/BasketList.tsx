@@ -1,23 +1,23 @@
-import { memo } from "react";
+import { FC, memo } from "react";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { removeBasket } from "../../API/fetchBasket";
-import { URL } from "../../consts/consts";
-import trashSvg from "../../static/trash.svg";
-
-import classes from "./styles/BasketProducts.module.scss";
-import MyText from "../../components/UI/text/MyText";
-import MyPrice from "../../components/UI/price/MyPrice";
+import classes from "./List.module.scss";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../types/product";
 import { RootState } from "../../store";
+import { IProduct } from "../../types/product";
+import { removeBasket } from "../../API/fetchBasket";
+import MyText from "../UI/text/MyText";
+import MyPrice from "../UI/price/MyPrice";
 
-type TypeBasket = {
+import trashSvg from "../../static/trash.svg";
+import { URL } from "../../consts/consts";
+
+type Props = {
     data: IProduct[];
 };
 
-const BasketProducts = memo(({ data }: TypeBasket) => {
+const BasketList: FC<Props> = memo(({ data }) => {
     const user = useSelector((state: RootState) => state.user);
     const queryClient = useQueryClient();
 
@@ -60,4 +60,4 @@ const BasketProducts = memo(({ data }: TypeBasket) => {
     );
 });
 
-export default BasketProducts;
+export default BasketList;

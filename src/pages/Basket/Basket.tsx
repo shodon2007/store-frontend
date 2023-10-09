@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import MySubtitle from "../../components/UI/subtitle/MySubtitle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import BasketList from "../../components/BasketList/BasketList";
 
 const Basket = memo(() => {
     const user = useSelector((state: RootState) => state.user);
@@ -40,7 +41,7 @@ const Basket = memo(() => {
     return (
         <div className={classes.main}>
             <MyTitle>Корзина</MyTitle>
-            <BasketProducts data={data} />
+            <BasketList data={data} />
 
             <div className={classes.bottom}>
                 <MySubtitle>Итого: {totalPrice} рублей</MySubtitle>
