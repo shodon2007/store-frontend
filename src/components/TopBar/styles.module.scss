@@ -1,0 +1,22 @@
+@import '../../styles/vars.scss';
+
+.bar {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    gap: 10px;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.item {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid $bgAll;
+    transition: all 0.3s ease;
+}
+
+.item.active,
+.item:hover {
+    background-color: $bgAll;
+}

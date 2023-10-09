@@ -1,6 +1,5 @@
 import { FC, memo } from "react";
 import Select, { SingleValue } from "react-select";
-import MySubtitle from "../../UI/subtitle/MySubtitle";
 import { TypeForm } from "../../../types/side";
 import { TypeOption } from "../../../types/select";
 
@@ -26,7 +25,6 @@ const options: TypeOption[] = [
 const Sort: FC<TypeSort> = memo(({ setForm }) => {
     return (
         <div>
-            <MySubtitle>Сортировка</MySubtitle>
             <Select
                 options={options}
                 placeholder={"Сортировка"}

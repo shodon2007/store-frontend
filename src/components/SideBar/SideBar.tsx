@@ -3,10 +3,8 @@ import { useFilter } from "../../hooks/useFilter";
 import { useParams } from "react-router-dom";
 import classes from "./SideBar.module.scss";
 import Loading from "../../pages/Loading";
-import MyButton from "../UI/button/MyButton";
 import Filter from "./components/Filter";
 import Sort from "./components/Sort";
-import Brand from "./components/Brand";
 
 interface ISide {
     setForm: any;
@@ -14,7 +12,6 @@ interface ISide {
 }
 
 const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
-    console.log(setForm);
     const { type } = useParams();
     const { isFetching, data } = useFilter(type);
 
@@ -30,10 +27,7 @@ const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
         <div className={classes.sidebar}>
             <div className={classes.list}>
                 <Sort setForm={setForm} />
-                <Brand setForm={setForm} />
-                <Filter data={data} setForm={setForm} />
-
-                <MyButton onClick={() => refetch()}>Применить</MyButton>
+                <Filter data={data} setForm={setForm} refetch={refetch} />
             </div>
         </div>
     );

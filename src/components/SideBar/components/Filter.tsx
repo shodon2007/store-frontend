@@ -1,20 +1,24 @@
 import { FC, memo } from "react";
-import MySubtitle from "../../UI/subtitle/MySubtitle";
 import { TypeForm, TypeSide } from "../../../types/side";
 import Select from "react-select";
 
 type TypeFilter = {
     data: TypeSide[];
     setForm: any;
+    refetch: () => void;
 };
 
-const Filter: FC<TypeFilter> = memo(({ data, setForm }) => {
-    function changeFilter(filterList: string[], title: string): void {
-        setForm((prew: TypeForm) => {
+const Filter: FC<TypeFilter> = memo(({ data, setForm, refetch }) => {
+    async function changeFilter(
+        filterList: string[],
+        title: string
+    ): Promise<void> {
+        await setForm((prew: TypeForm) => {
             const copyPrew = { ...prew };
             copyPrew.filter[title] = filterList;
             return prew;
         });
+        refetch();
     }
 
     return data.map((item: TypeSide) => {
@@ -30,7 +34,6 @@ const Filter: FC<TypeFilter> = memo(({ data, setForm }) => {
         });
         return (
             <div key={item.title}>
-                <MySubtitle>{item.title}</MySubtitle>
                 <Select
                     options={options}
                     isSearchable={false}
