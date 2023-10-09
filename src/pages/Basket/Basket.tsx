@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import MyTitle from "../../components/UI/title/MyTitle";
 import { useGetBasket, useTotalPrice } from "../../hooks/useBasket";
 import MyButton from "../../components/UI/button/MyButton";
-import BasketProducts from "./BasketProducts";
 
 import classes from "./styles/Basket.module.scss";
 import Loading from "../Loading";
