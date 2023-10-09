@@ -5,7 +5,6 @@ import { TypeForm } from "../../types/side";
 import BrandItem from "./BrandItem";
 
 import classes from "./styles.module.scss";
-import MyButton from "../UI/button/MyButton";
 
 type TypeTopBar = {
     setForm: any;

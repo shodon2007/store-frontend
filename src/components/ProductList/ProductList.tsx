@@ -1,10 +1,6 @@
 import classes from "./ProductList.module.scss";
 import { FC, memo } from "react";
 import { IProduct } from "../../types/product";
-import { Link } from "react-router-dom";
-import MyText from "../UI/text/MyText";
-import MyPrice from "../UI/price/MyPrice";
-import { URL } from "../../consts/consts";
 import MyTitle from "../UI/title/MyTitle";
 import ProductItem from "./ProductItem";
 
