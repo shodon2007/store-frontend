@@ -8,6 +8,7 @@ type TypeBrand = {
 
 const BrandItem = ({ brand, selected, brandClick }: TypeBrand) => {
     const itemClasses = [classes.item];
+    console.log(selected);
     if (selected) {
         itemClasses.push(classes.active);
     }

@@ -1,9 +1,9 @@
-@import '../../styles/vars.scss';
+@import "../../styles/vars.scss";
 
 .bar {
     display: flex;
-    width: 100%;
-    overflow: hidden;
+    max-width: 100vw;
+    overflow: auto;
     gap: 10px;
     background-color: white;
     padding: 10px 20px;
@@ -12,11 +12,11 @@
 .item {
     padding: 10px 20px;
     border-radius: 5px;
-    border: 1px solid $bgAll;
+    border: 1px solid rgb(177, 177, 177);
     transition: all 0.3s ease;
 }
 
-.item.active,
-.item:hover {
+.item.active {
+    border: 1px solid $bgAll;
     background-color: $bgAll;
 }

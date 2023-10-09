@@ -4,9 +4,10 @@
     font-size: 16px;
     cursor: pointer;
     padding: 10px 20px;
-    background-color: $color;
     max-width: max-content;
-    border: 0;
+    background-color: white;
+    border: 1px solid $bgAll;
+    border-radius: 5px;
 }
 
 @media (max-width: 1200px) {

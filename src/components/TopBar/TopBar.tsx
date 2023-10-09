@@ -5,6 +5,7 @@ import { TypeForm } from "../../types/side";
 import BrandItem from "./BrandItem";
 
 import classes from "./styles.module.scss";
+import MyButton from "../UI/button/MyButton";
 
 type TypeTopBar = {
     setForm: any;
@@ -49,6 +50,7 @@ const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
             {data.map((brand) => {
                 return (
                     <BrandItem
+                        key={brand}
                         brand={brand}
                         selected={form.brands.includes(brand)}
                         brandClick={brandClick}

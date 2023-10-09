@@ -4,7 +4,7 @@ import Loading from "../Loading";
 import Error404 from "../Error404";
 import { useCatalog } from "../../hooks/useCatalog";
 
-import ProductList from "../../components/ProductList/ProductList";
+import CatalogList from "../../components/CatalogList/CatalogList";
 
 const Catalog: FC = () => {
     const { isLoading, error, data: catalog } = useCatalog();
@@ -17,11 +17,7 @@ const Catalog: FC = () => {
         return <Error404 />;
     }
 
-    return (
-        <div>
-            <ProductList itemList={catalog} />
-        </div>
-    );
+    return <CatalogList data={catalog} />;
 };
 
 export default Catalog;
