@@ -1,6 +1,12 @@
 import classes from "./styles.module.scss";
 
-const BrandItem = ({ brand, selected, brandClick }) => {
+type TypeBrand = {
+    brand: string;
+    selected: boolean;
+    brandClick: (brand: string) => void;
+};
+
+const BrandItem = ({ brand, selected, brandClick }: TypeBrand) => {
     const itemClasses = [classes.item];
     if (selected) {
         itemClasses.push(classes.active);

@@ -15,7 +15,7 @@ type TypeTopBar = {
 const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
     const brandClick = useCallback(
         async (brand: string) => {
-            await setForm((prew) => {
+            await setForm((prew: TypeForm) => {
                 const copyPrew = { ...prew };
                 if (copyPrew.brands.includes(brand)) {
                     copyPrew.brands = copyPrew.brands.filter(
