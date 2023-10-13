@@ -1,8 +1,7 @@
-import { FC, memo, useCallback } from "react";
+import { FC, memo } from "react";
 import { useParams } from "react-router-dom";
 import { useBrand } from "../../hooks/useProducts";
 import { TypeForm } from "../../types/side";
-import BrandItem from "./BrandItem";
 
 import classes from "./styles.module.scss";
 
@@ -12,29 +11,19 @@ type TypeTopBar = {
     form: TypeForm;
 };
 
-const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
-    const brandClick = useCallback(
-        async (brand: string) => {
-            await setForm((prew: TypeForm) => {
-                const copyPrew = { ...prew };
-                if (copyPrew.brands.includes(brand)) {
-                    copyPrew.brands = copyPrew.brands.filter(
-                        (item) => item !== brand
-                    );
-                } else {
-                    copyPrew.brands = copyPrew.brands.filter(
-                        (item) => item !== "all"
-                    );
-                    copyPrew.brands.push(brand);
-                }
+function changeActiveButton(brands: string[], deleteBrand: string): string[] {
+    return brands.filter((item) => item !== deleteBrand);
+}
 
-                return copyPrew;
-            });
-            console.log(form);
-            refetch();
-        },
-        [form]
-    );
+function deleteAllTrigger(brands: string[]): string[] {
+    return brands.filter((brand) => brand !== "all");
+}
+
+function checkButtonActive(brands: string[], brand: string): boolean {
+    return brands.includes(brand);
+}
+
+const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
     const { type } = useParams();
     if (!type) {
         return "fuck";
@@ -44,16 +33,40 @@ const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
         return "";
     }
 
+    const brandClick = async (brand: string) => {
+        await setForm((prew: TypeForm) => {
+            const copyPrew = { ...prew };
+            const { brands } = copyPrew;
+            const isbuttonActive = checkButtonActive(brands, brand);
+
+            if (isbuttonActive) {
+                copyPrew.brands = changeActiveButton(brands, brand);
+            }
+            if (!isbuttonActive) {
+                copyPrew.brands = deleteAllTrigger(brands);
+                copyPrew.brands.push(brand);
+            }
+
+            return copyPrew;
+        });
+        refetch();
+    };
+
     return (
         <div className={classes.bar}>
             {data.map((brand) => {
+                const selected = checkButtonActive(form.brands, brand);
+                const buttonStyles = [classes.item];
+                if (selected) {
+                    buttonStyles.push(classes.active);
+                }
                 return (
-                    <BrandItem
-                        key={brand}
-                        brand={brand}
-                        selected={form.brands.includes(brand)}
-                        brandClick={brandClick}
-                    />
+                    <div
+                        className={buttonStyles.join(" ")}
+                        onClick={() => brandClick(brand)}
+                    >
+                        {brand}
+                    </div>
                 );
             })}
         </div>

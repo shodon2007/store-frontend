@@ -1,0 +1,14 @@
+[
+    {
+        "value": "date",
+        "label": "по дате"
+    },
+    {
+        "value": "price",
+        "label": "по цене"
+    },
+    {
+        "value": "name",
+        "label": "по названию"
+    }
+]

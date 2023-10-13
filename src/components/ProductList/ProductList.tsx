@@ -1,8 +1,8 @@
 import classes from "./ProductList.module.scss";
 import { FC, memo } from "react";
 import { IProduct } from "../../types/product";
-import MyTitle from "../UI/title/MyTitle";
 import ProductItem from "./ProductItem";
+import Error404 from "../../pages/Error404";
 
 type TypeList = {
     itemList: IProduct[];
@@ -10,7 +10,7 @@ type TypeList = {
 
 const ProductList: FC<TypeList> = memo(({ itemList }) => {
     if (itemList.length === 0) {
-        return <MyTitle>Ничего не найдено((</MyTitle>;
+        return <Error404 />;
     }
 
     return (

@@ -1,39 +1,7 @@
-@import '../../styles/vars.scss';
-
 .sidebar {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    gap: 10px;
     padding: 5px 10px;
-    gap: 10px;
-}
-
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.button {
-    background-color: #ffffff;
-    border: 0;
-    font-size: 14px;
-    width: 100%;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.active {
-    background-color: $bgAll;
-}
-
-.description {
-    display: flex;
-    gap: 10px;
-}
-
-@media (max-width: 1200px) {
-    .sidebar {
-        display: none;
-    }
+    background-color: white;
 }

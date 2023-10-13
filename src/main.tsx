@@ -8,11 +8,11 @@ import "./styles/index.scss";
 import ReactQuery from "./components/ReactQuery";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
     <Provider store={store}>
-      <ReactQuery>
-        <App />
-      </ReactQuery>
+        <BrowserRouter>
+            <ReactQuery>
+                <App />
+            </ReactQuery>
+        </BrowserRouter>
     </Provider>
-  </BrowserRouter>
 );
