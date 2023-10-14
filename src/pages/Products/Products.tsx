@@ -28,6 +28,7 @@ const Products: FC = memo(() => {
     }
     const { data, refetch } = useProducts(type, form);
     useEffect(() => {
+        console.log(form.price);
         refetch();
     }, [form]);
 

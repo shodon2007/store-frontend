@@ -15,6 +15,7 @@ const Pagination: FC<TypePagination> = ({ length, page, setPage }) => {
     for (let i = 0; i < pageLength; i++) {
         resItems.push(
             <div
+                key={i}
                 className={`
                 ${classes.paginationItem} ${page === i ? classes.active : ""}
                 `}

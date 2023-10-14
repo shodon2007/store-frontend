@@ -21,7 +21,7 @@ const ProductList: FC<TypeList> = memo(({ itemList, page }) => {
     return (
         <div className={classes.list}>
             {itemList.map((item: IProduct) => {
-                return <ProductItem item={item} />;
+                return <ProductItem item={item} key={item.id} />;
             })}
         </div>
     );

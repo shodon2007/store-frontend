@@ -62,6 +62,7 @@ const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
                 }
                 return (
                     <div
+                        key={brand}
                         className={buttonStyles.join(" ")}
                         onClick={() => brandClick(brand)}
                     >
