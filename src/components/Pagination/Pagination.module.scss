@@ -1,0 +1,21 @@
+@import "../../styles/vars.scss";
+
+.pagination {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+.paginationItem {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(177, 177, 177);
+
+    &.active {
+        background-color: $bgAll;
+        border: 1px solid $bgAll;
+    }
+}
