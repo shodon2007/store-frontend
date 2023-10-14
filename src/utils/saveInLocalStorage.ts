@@ -1,7 +1,7 @@
+import Cookies from 'js-cookie';
 
-
-export function saveUserInLocalStorage(token: string, user: string) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', user);
-    localStorage.setItem('isAuth', 'true');
+export function saveUserInCookies(token: string, user: string) {
+    Cookies.set('token', token);
+    Cookies.set('user', user);
+    Cookies.set('isAuth', 'true');
 }

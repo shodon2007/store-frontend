@@ -1,13 +1,13 @@
-export function tryGetTokenInLocalStorage(): string {
-    const token = localStorage.getItem('token');
-    return token ?? '';
-}
-export function tryGetUserInLocalStorage(): string {
-    const user = localStorage.getItem('user');
-    return user ?? '';
+import Cookies from 'js-cookie';
+
+export function tryGetTokenInCookies() {
+    return Cookies.get('token') || '';
 }
 
-export function tryGetAuthInLocalStorage(): boolean {
-    const isAuth = !!localStorage.getItem('isAuth');
-    return isAuth;
+export function tryGetUserInCookies() {
+    return Cookies.get('user') || '';
+}
+
+export function tryGetAuthInCookies() {
+    return !!Cookies.get('isAuth');
 }

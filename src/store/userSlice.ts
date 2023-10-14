@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { tryGetAuthInLocalStorage, tryGetTokenInLocalStorage, tryGetUserInLocalStorage } from "../utils/tryGetInLocalStorage";
+import { tryGetAuthInCookies, tryGetTokenInCookies, tryGetUserInCookies, } from "../utils/tryGetInLocalStorage";
 
 type TypeUser = {
     isAuth: boolean;
@@ -13,9 +13,9 @@ type TypeLoginAction = {
 }
 
 const initialState: TypeUser = {
-    isAuth: tryGetAuthInLocalStorage(),
-    token: tryGetTokenInLocalStorage(),
-    user: tryGetUserInLocalStorage(),
+    isAuth: tryGetAuthInCookies(),
+    token: tryGetTokenInCookies(),
+    user: tryGetUserInCookies(),
 }
 
 const userSlice = createSlice({
