@@ -11,7 +11,9 @@ const Layout = () => {
                 hideProgressBar
             />
             <Header />
-            <Outlet />
+            <div className="app">
+                <Outlet />
+            </div>
         </>
     );
 };

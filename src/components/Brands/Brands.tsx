@@ -5,7 +5,7 @@ import { TypeForm } from "../../types/side";
 
 import classes from "./styles.module.scss";
 
-type TypeTopBar = {
+type TypeBrands = {
     setForm: any;
     refetch: () => void;
     form: TypeForm;
@@ -23,7 +23,7 @@ function checkButtonActive(brands: string[], brand: string): boolean {
     return brands.includes(brand);
 }
 
-const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
+const Brands: FC<TypeBrands> = memo(({ setForm, refetch, form }) => {
     const { type } = useParams();
     if (!type) {
         return "fuck";
@@ -74,4 +74,4 @@ const TopBar: FC<TypeTopBar> = memo(({ setForm, refetch, form }) => {
     );
 });
 
-export default TopBar;
+export default Brands;

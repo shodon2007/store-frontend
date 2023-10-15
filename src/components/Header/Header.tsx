@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 
 import classes from "./Header.module.scss";
 import NavBar from "../NavBar/NavBar";
-import MyTitle from "../UI/title/MyTitle";
 
 const Header: FC = () => {
     return (
         <header className={classes.header}>
-            <MyTitle>
+            <div className={classes.headerContent}>
                 <Link to={"/"}>shodon store</Link>
-            </MyTitle>
-            <NavBar />
+                <NavBar />
+            </div>
         </header>
     );
 };

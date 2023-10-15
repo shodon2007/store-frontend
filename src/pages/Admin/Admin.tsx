@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Admin: FC = () => {
-    return <div>Admin page</div>;
+    return <div></div>;
 };
 
 export default Admin;

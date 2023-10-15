@@ -11,3 +11,9 @@
     flex-direction: column;
     gap: 5px;
 }
+
+@media (max-width: 1200px) {
+    .active {
+        display: none;
+    }
+}

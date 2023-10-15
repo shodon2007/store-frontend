@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 
 import classes from "./Pagination.module.scss";
+import MyText from "../UI/text/MyText";
 
 type TypePagination = {
     length: number;
@@ -21,7 +22,7 @@ const Pagination: FC<TypePagination> = ({ length, page, setPage }) => {
                 `}
                 onClick={() => setPage(i)}
             >
-                {i + 1}
+                <MyText>{i + 1}</MyText>
             </div>
         );
     }

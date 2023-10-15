@@ -8,28 +8,14 @@
     align-items: center;
 }
 
-.text {
-    font-size: 16px;
-}
-
 .svg {
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
 }
 
 @media (max-width: 1200px) {
     .item {
         display: flex;
         gap: 0px;
-    }
-
-    .text {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 600px) {
-    .text {
-        display: none;
     }
 }

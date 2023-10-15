@@ -6,12 +6,13 @@ import Price from "./components/Price";
 
 interface ISide {
     setForm: any;
+    active: boolean;
     refetch: () => void;
 }
 
-const SideBar: FC<ISide> = memo(({ setForm, refetch }) => {
+const SideBar: FC<ISide> = memo(({ active, setForm, refetch }) => {
     return (
-        <div className={classes.sidebar}>
+        <div className={`${classes.sidebar} ${active ? "" : classes.active}`}>
             <Sort setForm={setForm} />
             <Price setForm={setForm} />
             <Filter setForm={setForm} refetch={refetch} />

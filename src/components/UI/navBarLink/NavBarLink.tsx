@@ -6,15 +6,13 @@ import classes from "./NavBarLink.module.scss";
 type NavLinkProps = {
     to: string;
     img: string;
-    text: string;
     onClick?: () => void;
 };
 
-const NavBarLink: FC<NavLinkProps> = ({ to, img, text, ...props }) => {
+const NavBarLink: FC<NavLinkProps> = ({ to, img, ...props }) => {
     return (
         <Link to={to} className={classes.item} {...props}>
-            <img src={img} className={classes.svg} alt={text} />
-            <span className={classes.text}>{text}</span>
+            <img src={img} className={classes.svg} alt={"hello world"} />
         </Link>
     );
 };

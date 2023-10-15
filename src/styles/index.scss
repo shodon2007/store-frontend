@@ -9,25 +9,13 @@
 }
 
 body {
-    background-color: rgba(93, 176, 255, 0.3);
+    background-color: #e1e5eb;
     overflow: auto;
 }
 
 .app {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-}
-
-@media (max-width: 1200px) {
-    .app {
-        padding: 0 10px;
-    }
-}
-
-@media (max-width: 720px) {
-    .app {
-        padding: 0 5px;
-    }
+    max-width: 1200px;
+    margin: 0 auto;
 }

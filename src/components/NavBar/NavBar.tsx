@@ -24,16 +24,11 @@ const NavBar: FC = () => {
         <nav className={classes.nav}>
             {user.isAuth ? (
                 <>
-                    <NavBarLink to="/basket" img={basketSvg} text="корзина" />
-                    <NavBarLink
-                        to="#"
-                        img={userSvg}
-                        text="Выйти"
-                        onClick={exitClick}
-                    />
+                    <NavBarLink to="/basket" img={basketSvg} />
+                    <NavBarLink to="#" img={userSvg} onClick={exitClick} />
                 </>
             ) : (
-                <NavBarLink to="/login" img={userSvg} text="Войти" />
+                <NavBarLink to="/login" img={userSvg} />
             )}
         </nav>
     );
