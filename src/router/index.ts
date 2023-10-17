@@ -1,4 +1,3 @@
-import Admin from "../pages/Admin/Admin";
 import Login from "../pages/Auth/Login";
 import Registration from "../pages/Auth/Registration";
 import Basket from "../pages/Basket/Basket";
@@ -16,11 +15,6 @@ export const router: TypeRouter[] = [
     {
         path: 'basket',
         component: Basket,
-        index: false,
-    },
-    {
-        path: 'admin',
-        component: Admin,
         index: false,
     },
     {
