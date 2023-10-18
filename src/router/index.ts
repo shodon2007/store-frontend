@@ -5,6 +5,7 @@ import Basket from "../pages/Basket/Basket";
 import Catalog from "../pages/Catalog/Catalog";
 import Product from "../pages/Product/Product";
 import Products from "../pages/Products/Products";
+import AddDevice from "../pages/Admin/AddDevice";
 
 type TypeRouter = {
     path: string;
@@ -21,6 +22,11 @@ export const router: TypeRouter[] = [
     {
         path: 'admin',
         component: Admin,
+        index: false,
+    },
+    {
+        path: 'admin/addDevice',
+        component: AddDevice,
         index: false,
     },
     {
