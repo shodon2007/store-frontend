@@ -1,6 +1,6 @@
 export interface IDeviceData {
     name: string,
     price: number,
-    brand_id: number,
+    brand: string,
     type_id: number,
 }

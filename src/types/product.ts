@@ -33,4 +33,4 @@ export type TypeGetProducts = (
 
 export type TypeGetFilter = (type: string) => Promise<AxiosResponse<IAttributes[]>>;
 
-export type TypeGetBrand = (type: string) => Promise<AxiosResponse<string[]>>
+export type TypeGetBrand = (type: string | undefined) => Promise<AxiosResponse<string[]>>

@@ -16,8 +16,14 @@ export const useProduct = (type: string, id: number): UseQueryResult<IProduct> =
     });
 }
 
-export const useBrand = (type: string): UseQueryResult<string[]> => {
-    return useQuery(['brands', type], () => getBrands(type), {
+export const useBrand = (type?: string): UseQueryResult<string[]> => {
+    if (type) {
+        return useQuery(['brands', type], () => getBrands(type), {
+            select: ({ data }) => data,
+        });
+    }
+
+    return useQuery(['brands'], () => getBrands(type), {
         select: ({ data }) => data,
     });
 }

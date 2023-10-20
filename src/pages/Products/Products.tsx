@@ -21,7 +21,7 @@ const Products: FC = memo(() => {
         filter: {},
         price: {
             min: 0,
-            max: 1000000,
+            max: 1000000000000000,
         },
         sort: "none",
     });
