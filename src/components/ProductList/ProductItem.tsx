@@ -15,6 +15,7 @@ const ProductItem: FC<Props> = memo(({ item }) => {
     return (
         <Link key={item.id} className={classes.item} to={`${item.id}`}>
             <img
+                loading="lazy"
                 className={classes.img}
                 src={`${URL}/${item.img}`}
                 alt="product-img"

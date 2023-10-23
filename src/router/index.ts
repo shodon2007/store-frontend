@@ -6,6 +6,7 @@ import Catalog from "../pages/Catalog/Catalog";
 import Product from "../pages/Product/Product";
 import Products from "../pages/Products/Products";
 import AddDevice from "../pages/Admin/AddDevice";
+import DeleteDevice from "../pages/Admin/DeleteDevice";
 
 type TypeRouter = {
     path: string;
@@ -27,6 +28,11 @@ export const router: TypeRouter[] = [
     {
         path: 'admin/addDevice',
         component: AddDevice,
+        index: false,
+    },
+    {
+        path: 'admin/deleteDevice',
+        component: DeleteDevice,
         index: false,
     },
     {

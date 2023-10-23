@@ -10,6 +10,9 @@ import Brands from "../../components/Brands/Brands";
 import Pagination from "../../components/Pagination/Pagination";
 import MyTitle from "../../components/UI/title/MyTitle";
 import MyButton from "../../components/UI/button/MyButton";
+import { useCatalog } from "../../hooks/useCatalog";
+import { ICatalog } from "../../types/catalog";
+import Loading from "../Loading";
 
 const Products: FC = memo(() => {
     const { type } = useParams();
@@ -26,24 +29,35 @@ const Products: FC = memo(() => {
         sort: "none",
     });
 
+    function createTitle(catalogArr: ICatalog[] | undefined) {
+        if (catalogArr) {
+            const findItem = catalogArr.filter((item) => item.name === type)[0];
+            return findItem?.name_ru ?? "Продукты";
+        }
+        return "Продукты";
+    }
+
     if (!type) {
         return <Error404 />;
     }
-    const { data, refetch } = useProducts(type, form);
+    const { data, isLoading, refetch } = useProducts(type, form);
+    const { data: catalog } = useCatalog();
     useEffect(() => {
         refetch();
     }, [form]);
 
-    const notFound = !data;
+    if (isLoading) {
+        return <Loading />;
+    }
 
-    if (notFound) {
+    if (!data) {
         return <Error404 />;
     }
 
     return (
         <div className={classes.products}>
             <div className={classes.top}>
-                <MyTitle>Телефоны</MyTitle>
+                <MyTitle>{createTitle(catalog)}</MyTitle>
                 <MyButton
                     onClick={() => {
                         setSideBarActive((prew) => !prew);

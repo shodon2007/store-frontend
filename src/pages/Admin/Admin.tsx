@@ -12,7 +12,7 @@ const adminFunctions = [
         text: "Добавить товар",
     },
     {
-        type: "removeDevice",
+        type: "deleteDevice",
         text: "Удалить товар",
     },
 ];
