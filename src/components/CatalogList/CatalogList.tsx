@@ -25,9 +25,7 @@ const CatalogList: FC<Props> = ({ data }) => {
                             className={classes.img}
                             alt="product-img"
                         />
-                        <div>
-                            <MyText>{item.name_ru}</MyText>
-                        </div>
+                        <MyText>{item.name_ru}</MyText>
                     </Link>
                 );
             })}

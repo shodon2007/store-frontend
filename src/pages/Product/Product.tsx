@@ -39,11 +39,7 @@ const Product = memo(() => {
             <div className={classes.body}>
                 <div className={classes.top}>
                     <MyTitle>{product.name}</MyTitle>
-                    {"attributes" in product ? (
-                        <Attributes attributes={product.attributes} />
-                    ) : (
-                        ""
-                    )}
+                    <Attributes attributes={product.attributes} />
                 </div>
                 <div className={classes.bottom}>
                     <MySubtitle>{product.price} рублей</MySubtitle>

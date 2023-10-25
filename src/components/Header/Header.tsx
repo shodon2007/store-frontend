@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./Header.module.scss";
 import NavBar from "../NavBar/NavBar";
 
-const Header: FC = () => {
+const Header: FC = memo(() => {
     return (
         <header className={classes.header}>
             <div className={classes.headerContent}>
@@ -13,6 +13,6 @@ const Header: FC = () => {
             </div>
         </header>
     );
-};
+});
 
 export default Header;

@@ -10,22 +10,33 @@ type TypePagination = {
 };
 
 const Pagination: FC<TypePagination> = ({ length, page, setPage }) => {
-    const resItems = [];
-    const pageLength = Math.ceil(length / 5);
+    const resItems = createPaginationElems();
 
-    for (let i = 0; i < pageLength; i++) {
-        resItems.push(
-            <div
-                key={i}
-                className={`
-                ${classes.paginationItem} ${page === i ? classes.active : ""}
-                `}
-                onClick={() => setPage(i)}
-            >
-                <MyText>{i + 1}</MyText>
-            </div>
-        );
+    function createPaginationElems() {
+        const res = [];
+        const pageLength = Math.ceil(length / 5);
+
+        for (let i = 0; i < pageLength; i++) {
+            const pagClasses = [classes.paginationItem];
+
+            if (page === i) {
+                pagClasses.push(classes.active);
+            }
+
+            res.push(
+                <div
+                    key={i}
+                    className={pagClasses.join(" ")}
+                    onClick={() => setPage(i)}
+                >
+                    <MyText>{i + 1}</MyText>
+                </div>
+            );
+        }
+
+        return res;
     }
+
     return (
         <div className={classes.pagination}>{resItems.map((item) => item)}</div>
     );

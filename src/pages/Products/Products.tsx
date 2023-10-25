@@ -37,11 +37,16 @@ const Products: FC = memo(() => {
         return "Продукты";
     }
 
+    function toggleSideBarActive() {
+        setSideBarActive(!sideBarActive);
+    }
+
     if (!type) {
         return <Error404 />;
     }
     const { data, isLoading, refetch } = useProducts(type, form);
     const { data: catalog } = useCatalog();
+
     useEffect(() => {
         refetch();
     }, [form]);
@@ -58,13 +63,7 @@ const Products: FC = memo(() => {
         <div className={classes.products}>
             <div className={classes.top}>
                 <MyTitle>{createTitle(catalog)}</MyTitle>
-                <MyButton
-                    onClick={() => {
-                        setSideBarActive((prew) => !prew);
-                    }}
-                >
-                    фильтр
-                </MyButton>
+                <MyButton onClick={toggleSideBarActive}>фильтр</MyButton>
             </div>
             <div className={classes.content}>
                 <SideBar
